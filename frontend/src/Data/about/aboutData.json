@@ -1,0 +1,38 @@
+{
+  "sections": [
+    {
+      "title": "SHIPPING",
+      "items": [
+        {
+          "question": "Domestic Shipping",
+          "answer": "We're pleased to offer international shipping via BorderGuru. International shipping and import fees, including customs duties, taxes, and fees, are calculated at checkout. Depending on the destination, transit time can take from 4 to 12 business days. Please note we do not accept returns on international orders. All products are shipped directly from Los Angeles, CA. Orders placed before 3 pm PST/PDT will be processed and shipped by the next business day. Orders placed on Fridays and over the weekend will be processed and shipped by the following Monday. Shipping confirmation email along with tracking information will be sent when your order is processed. Please note we are not responsible for lost or stolen packages, or returned or delayed packages by the postal service."
+        },
+        {
+          "question": "International Shipping",
+          "answer": "We're pleased to offer international shipping via BorderGuru. International shipping and import fees, including customs duties, taxes, and fees, are calculated at checkout. Depending on the destination, transit time can take from 4 to 12 business days. Please note we do not accept returns on international orders. All products are shipped directly from Los Angeles, CA. Orders placed before 3 pm PST/PDT will be processed and shipped by the next business day. Orders placed on Fridays and over the weekend will be processed and shipped by the following Monday. Shipping confirmation email along with tracking information will be sent when your order is processed. Please note we are not responsible for lost or stolen packages, or returned or delayed packages by the postal service."
+        },
+        {
+          "question": "Shipping Restriction",
+          "answer": "Some locations may have shipping restrictions due to legal or logistical reasons. Please check with our support team for more details."
+        }
+      ]
+    },
+    {
+      "title": "RETURNS",
+      "items": [
+        {
+          "question": "Return Policy",
+          "answer": "You can return items within 30 days of purchase. The product must be in its original condition with tags attached. Please contact customer support for a return authorization."
+        },
+        {
+          "question": "How To Return",
+          "answer": "To return an item, place it securely in its original packaging and include the provided return form. Ship it to the address given in the return instructions."
+        },
+        {
+          "question": "Refunds",
+          "answer": "Refunds are processed within 7 business days after receiving the returned item. Refunds will be issued to the original payment method."
+        }
+      ]
+    }
+  ]
+}

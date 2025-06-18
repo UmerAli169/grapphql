@@ -1,0 +1,46 @@
+{
+  "blogs": [
+    {
+      "title": "Cracking the Coconut Code",
+      "description": "Few ingredients have been debated as much in recent years as coconut oil. Is it or is it not the “miracle product” so many claim it to be? We answer: Like anything, it depends. One of our newest brands, Solved Skincare, puts coconut oil front and center, so we wanted to give you the facts to decide how your specific skin type can reap its rewards.Few ingredients have been debated as much in recent years as coconut oil. Is it or is it not the “miracle product” so many claim it to be? We answer: Like anything, it depends. One of our newest brands, Solved Skincare, puts coconut oil front and center, so we wanted to give you the facts to decide how your specific skin type can reap its rewards.Few ingredients have been debated as much in recent years as coconut oil. Is it or is it not the “miracle product” so many claim it to be? We answer: Like anything, it depends. One of our newest brands, Solved Skincare, puts coconut oil front and center, so we wanted to give you the facts to decide how your specific skin type can reap its rewards.",
+      "tags": [
+        "Moisturizer",
+        "Skincare",
+        "Hydration",
+        "Organic"
+      ],
+      "image": "blog.png",
+      "date": "January 20, 2023",
+      "points": [
+        "Key takeaway 1",
+        "Key takeaway 2",
+        "Key takeaway 3"
+      ],
+      "sections": [
+        {
+          "heading": "HOW IS COCONUT OIL MANUFACTURED?",
+          "content": "Few ingredients have been debated as much in recent years as coconut oil. Is it or is it not the “miracle product” so many claim it to be? We answer: Like anything, it depends. One of our newest brands, Solved Skincare, puts coconut oil front and center, so we wanted to give you the facts to decide how your specific skin type can reap its rewards.Few ingredients have been debated as much in recent years as coconut oil. Is it or is it not the “miracle product” so many claim it to be? We answer: Like anything, it depends. One of our newest brands, Solved Skincare, puts coconut oil front and center, so we wanted to give you the facts to decide how your specific skin type can reap its rewards.Few ingredients have been debated as much in recent years as coconut oil. Is it or is it not the “miracle product” so many claim it to be? We answer: Like anything, it depends. One of our newest brands, Solved Skincare, puts coconut oil front and center, so we wanted to give you the facts to decide how your specific skin type can reap its rewards.",
+          "image": "blog.png",
+          "date": "January 20, 2023"
+        },
+        {
+          "heading": "DOES COCONUT OIL HELP WITH ACNE?",
+          "content": "Few ingredients have been debated as much in recent years as coconut oil. Is it or is it not the “miracle product” so many claim it to be? We answer: Like anything, it depends. One of our newest brands, Solved Skincare, puts coconut oil front and center, so we wanted to give you the facts to decide how your specific skin type can reap its rewards.Few ingredients have been debated as much in recent years as coconut oil. Is it or is it not the “miracle product” so many claim it to be? We answer: Like anything, it depends. One of our newest brands, Solved Skincare, puts coconut oil front and center, so we wanted to give you the facts to decide how your specific skin type can reap its rewards.Few ingredients have been debated as much in recent years as coconut oil. Is it or is it not the “miracle product” so many claim it to be? We answer: Like anything, it depends. One of our newest brands, Solved Skincare, puts coconut oil front and center, so we wanted to give you the facts to decide how your specific skin type can reap its rewards.",
+          "image": "blog.png",
+          "date": "January 20, 2023"
+        },
+        {
+          "heading": "DOES COCONUT OIL CLOG PORES?",
+          "content": "Few ingredients have been debated as much in recent years as coconut oil. Is it or is it not the “miracle product” so many claim it to be? We answer: Like anything, it depends. One of our newest brands, Solved Skincare, puts coconut oil front and center, so we wanted to give you the facts to decide how your specific skin type can reap its rewards.Few ingredients have been debated as much in recent years as coconut oil. Is it or is it not the “miracle product” so many claim it to be? We answer: Like anything, it depends. One of our newest brands, Solved Skincare, puts coconut oil front and center, so we wanted to give you the facts to decide how your specific skin type can reap its rewards.Few ingredients have been debated as much in recent years as coconut oil. Is it or is it not the “miracle product” so many claim it to be? We answer: Like anything, it depends. One of our newest brands, Solved Skincare, puts coconut oil front and center, so we wanted to give you the facts to decide how your specific skin type can reap its rewards.",
+          "image": "blog.png",
+          "date": "January 20, 2023",
+          "points": [
+            "Important detail 1",
+            "Important detail 2",
+            "Important detail 3"
+          ]
+        }
+      ]
+    }
+  ]
+}

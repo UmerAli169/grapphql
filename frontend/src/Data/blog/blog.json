@@ -1,0 +1,52 @@
+{
+  "blogs": [
+    {
+      "title": "Cracking the Coconut Code",
+      "description": "Can you believe we’re here? Another year is wrapping up and we’re feeling celebratory, wanting to share our list for the best products of 2023. There are so many ways to categorize what is already a collection of our favorite brands , but ultimately we decided that by focusing on HOW CLEAN THE INGREDIENTS ARE, and HOW EFFECTIVE THE FORMULAS, you’ll be able to find something streamlined for glowing skin success.",
+      "image": "frame.png",
+      "buttonLabels": [
+        "#Tips",
+        "#Anti-aging",
+        "#Ingredients"
+      ],
+      "shopNowText": "Shop Now",
+      "date": "January 20, 2023"
+    },
+    {
+      "title": "Cracking the Coconut Code",
+      "description": "Can you believe we’re here? Another year is wrapping up and we’re feeling celebratory, wanting to share our list for the best products of 2023. There are so many ways to categorize what is already a collection of our favorite brands , but ultimately we decided that by focusing on HOW CLEAN THE INGREDIENTS ARE, and HOW EFFECTIVE THE FORMULAS, you’ll be able to find something streamlined for glowing skin success.",
+      "image": "frame.png",
+      "buttonLabels": [
+        "#Tips",
+        "#Anti-aging",
+        "#Ingredients"
+      ],
+      "shopNowText": "Shop Now",
+      "date": "January 18, 2023"
+    },
+    {
+      "title": "Cracking the Coconut Code",
+      "description": "Can you believe we’re here? Another year is wrapping up and we’re feeling celebratory, wanting to share our list for the best products of 2023. There are so many ways to categorize what is already a collection of our favorite brands , but ultimately we decided that by focusing on HOW CLEAN THE INGREDIENTS ARE, and HOW EFFECTIVE THE FORMULAS, you’ll be able to find something streamlined for glowing skin success.",
+      "image": "frame.png",
+      "buttonLabels": [
+        "#Tips",
+        "#Anti-aging",
+        "#Ingredients"
+      ],
+      "shopNowText": "Shop Now",
+      "date": "January 15, 2023"
+    },
+    {
+      "title": "Cracking the Coconut Code",
+      "description": "Can you believe we’re here? Another year is wrapping up and we’re feeling celebratory, wanting to share our list for the best products of 2023. There are so many ways to categorize what is already a collection of our favorite brands , but ultimately we decided that by focusing on HOW CLEAN THE INGREDIENTS ARE, and HOW EFFECTIVE THE FORMULAS, you’ll be able to find something streamlined for glowing skin success..",
+      "image": "frame.png",
+      "buttonLabels": [
+        "#Tips",
+        "#Anti-aging",
+        "#Ingredients"
+      ],
+      "shopNowText": "Shop Now",
+      "date": "January 10, 2023"
+    }
+  ]
+}

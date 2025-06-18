@@ -1,0 +1,44 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Dewy Glow Jelly Cream",
+      "price": 26.00,
+      "rating": 4.5,
+      "reviews": 3,
+      "description": "A gel moisturizer packed with glow-boosting Cherry Blossom Extracts, visibly brightening niacinamide, and hydrating betaine from sugar beets. Advanced with glycerin and Cherry Blossom flavonoids with visibly soothing and moisturizing benefits for skin that's ready for makeup! Dermatologist tested.",
+      "size": "50 ml",
+      "recommendedFor": ["All Skin Types", "Combo to Dry", "Dryness"],
+      "keyIngredients": [
+        "Cherry Blossom Flavonoids: visibly soothing",
+        "Niacinamide: visibly brightening",
+        "Sugar Beet Betaine: hydrating"
+      ],
+      "imageUrl": "/Product/productDetils/pic.png",
+      "thumbnailImages": [
+        "/Product/productDetils/pic.png",
+        "/Product/productDetils/pic.png",
+        "/Product/productDetils/pic.png",
+        "/Product/productDetils/pic.png",
+        "/Product/productDetils/pic.png"
+      ]
+    }
+  ],
+  "shipping": {
+    "title": "Shipping",
+    "items": [
+      {
+        "question": "Domestic Shipping",
+        "answer": "We're pleased to offer international shipping via BorderGuru. International shipping and import fees, including customs duties, taxes, and fees, are calculated at checkout. Depending on the destination, transit time can take from 4 to 12 business days. Please note we do not accept returns on international orders. All products are shipped directly from Los Angeles, CA. Orders placed before 3 pm PST/PDT will be processed and shipped by the next business day. Orders placed on Fridays and over the weekend will be processed and shipped by the following Monday. Shipping confirmation email along with tracking information will be sent when your order is processed. Please note we are not responsible for lost or stolen packages, or returned or delayed packages by the postal service."
+      },
+      {
+        "question": "International Shipping",
+        "answer": "We're pleased to offer international shipping via BorderGuru. International shipping and import fees, including customs duties, taxes, and fees, are calculated at checkout. Depending on the destination, transit time can take from 4 to 12 business days. Please note we do not accept returns on international orders. All products are shipped directly from Los Angeles, CA. Orders placed before 3 pm PST/PDT will be processed and shipped by the next business day. Orders placed on Fridays and over the weekend will be processed and shipped by the following Monday. Shipping confirmation email along with tracking information will be sent when your order is processed. Please note we are not responsible for lost or stolen packages, or returned or delayed packages by the postal service."
+      },
+      {
+        "question": "Shipping Restriction",
+        "answer": "Some locations may have shipping restrictions due to legal or logistical reasons. Please check with our support team for more details."
+      }
+    ]
+  }
+}

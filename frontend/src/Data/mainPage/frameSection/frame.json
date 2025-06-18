@@ -1,0 +1,41 @@
+{
+    "products": [
+      {
+        "title": "Blossom Glow Kit",
+        "description": "Reveal your skin's natural glow with our Lotus Glow Kit. Nourishing body and face creams with lotus extract provide deep hydration and rejuvenation. Suitable for all skin types. Vegan, cruelty-free, eco-friendly.",
+        "buttonLabels": ["#GrtGift", "#AntiAging", "#eatGift", "#Ineents", "#Iedients"],
+        "shopNowText": "Shop Now",
+        "exploreMoreText": "Explore More",
+        "image": "/frame.png",
+        "exploreIcon": "/explore.svg"
+      },
+      {
+        "title": "Floral Essence Masks Set",
+        "description": "Indulge in the beauty of nature with our Floral Essence Masks set. Each mask features a unique blend of flower extracts to hydrate and nourish your skin. Experience the essence of flowers in your skincare routine.",
+        "buttonLabels": ["#Hration", "#Glow", "#FlolPower", "#SelfCare"],
+        "shopNowText": "Shop Now",
+        "exploreMoreText": "Explore More",
+        "image": "/frame.png",
+        "exploreIcon": "/explore.svg"
+      },
+      {
+        "title": "Herbal Skincare Collection",
+        "description": "Our Herbal Skincare Collection combines nature's finest herbs to deliver deep nourishment and long-lasting hydration. Perfect for sensitive and dry skin types.",
+        "buttonLabels": ["#HerbCare", "#Brighting", "#GlowUp"],
+        "shopNowText": "Shop Now",
+        "exploreMoreText": "Explore More",
+        "image": "/frame.png",
+        "exploreIcon": "/explore.svg"
+      },
+      {
+        "title": "Radiant Glow Serum",
+        "description": "Boost your skin's radiance with our lightweight glow serum. Infused with vitamins and antioxidants, it helps brighten, hydrate, and rejuvenate dull skin.",
+        "buttonLabels": ["#Brighting", "#Vminost", "#GlowUp"],
+        "shopNowText": "Shop Now",
+        "exploreMoreText": "Explore More",
+        "image": "/frame.png",
+        "exploreIcon": "/explore.svg"
+      }
+    ]
+  }
+  

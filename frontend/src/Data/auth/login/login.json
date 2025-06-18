@@ -1,0 +1,7 @@
+{
+    "svgs": [
+      { "label": "Left Line", "path": "/leftLine.svg" },
+      { "label": "Right Line", "path": "/rightLine.svg" }
+    ]
+  }
+  

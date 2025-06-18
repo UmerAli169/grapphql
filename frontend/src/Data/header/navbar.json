@@ -1,0 +1,55 @@
+{
+  "menuItems": [
+    {
+      "label": "",
+      "enabled": false,
+      "hasSubmenu": true
+    },
+    {
+      "label": "SHOP ALL",
+      "enabled": true
+    },
+    {
+      "label": "BESTSELLERS",
+      "enabled": true
+    },
+    {
+      "label": "COLLECTION",
+      "enabled": true
+    },
+    {
+      "label": "ABOUT US",
+      "enabled": true,
+      "hasSubmenu": true
+    },
+    {
+      "label": "BLOG",
+      "enabled": true
+    }
+  ],
+  "icons": [
+    {
+      "img": "/svgs/Dashboard/search.svg",
+      "label": "Search",
+      "path":""
+    },
+    {
+      "img": "/svgs/Dashboard/account.svg",
+      "label": "Account",
+      "path":"/Account/changepassword"
+
+    },
+    {
+      "img": "/svgs/Dashboard/cart.svg",
+      "label": "Cart"
+    }
+  ],
+  "mobileMenu": {
+    "img": "/svgs/Dashboard/hamburger.svg",
+    "label": "MENU"
+  },
+  "closeMenu": {
+    "img": "/svgs/Shared/cross.svg",
+    "label": "CLOSE"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "reviews": [
+    {
+      "name": "Cathy K.",
+      "verified": true,
+      "rating": 5,
+      "title": "VERY MOISTURIZING",
+      "text": "I didn't know how effective the gel cream would be since I was skeptical of the texture, but my sensitive skin loved it and I didn't even break out when I first started using it. Love it!",
+      "images": ["/reviews/Rectangle 67.png"],
+      "date": "26/02/23"
+    },
+    {
+      "name": "Aileen R.",
+      "verified": false,
+      "rating": 5,
+      "title": "REALLY LIGHT AND NOT STICKY.",
+      "text": "Really light and not sticky. My skin soaked it right up! I mix it with the green tea products and it helps balance my combo skin.",
+      "images": ["/reviews/Rectangle 67.png","/reviews/Rectangle 67.png"],
+      "date": "12/02/23"
+    },
+    {
+      "name": "Cathy K.",
+      "verified": true,
+      "rating": 5,
+      "title": "Tried the kit since it",
+      "text": "Tried the kit since it was my first time trying this product line. So far I really am enjoying it and it gives my skin a smooth and fresh look morning and night!",
+      "images": [],
+      "date": "02/02/23"
+    }
+  ]
+}

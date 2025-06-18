@@ -1,0 +1,51 @@
+[
+  {
+    "name": "Double-Cleanse",
+    "slug": "double-cleanse",
+    "subcategories": [
+      { "name": "Cleansing Balms", "slug": "cleansing-balms" },
+      { "name": "Oil Cleansers", "slug": "oil-cleansers" },
+      { "name": "Water Cleansers", "slug": "water-cleansers" }
+    ]
+  },
+  {
+    "name": "Exfoliators",  
+    "slug": "exfoliators",
+    "subcategories": []
+  },
+  {
+    "name": "Toners",
+    "slug": "toners",
+    "subcategories": []
+  },
+  {
+    "name": "Masks",
+    "slug": "masks",
+    "subcategories": []
+  },
+  {
+    "name": "Eye Care",
+    "slug": "eye-care",
+    "subcategories": []
+  },
+  {
+    "name": "Moisturizers",
+    "slug": "moisturizers",
+    "subcategories": []
+  },
+  {
+    "name": "Sun Protection",
+    "slug": "sun-protection",
+    "subcategories": []
+  },
+  {
+    "name": "Hair & Body",
+    "slug": "hair-body",
+    "subcategories": []
+  },
+  {
+    "name": "Makeup & Tools",
+    "slug": "makeup-tools",
+    "subcategories": []
+  }
+]

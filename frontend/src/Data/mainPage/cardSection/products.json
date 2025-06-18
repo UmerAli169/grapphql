@@ -1,0 +1,200 @@
+{
+  "sections": [
+    {
+      "title": "Recently Viewed Products",
+      "products": "newArrivals"
+    },
+    {
+      "title": "You May Also Like",
+      "products": "bestSellers"
+    }
+  ],
+  "categories": [
+    {
+      "name": "Skincare",
+      "slug": "skincare",
+      "subcategories": [
+        {
+          "name": "Sun Protection",
+          "slug": "sun-protection"
+        },
+        {
+          "name": "Moisturizers",
+          "slug": "moisturizers"
+        },
+        {
+          "name": "Cleansers",
+          "slug": "cleansers"
+        }
+      ]
+    },
+    {
+      "name": "Makeup",
+      "slug": "makeup",
+      "subcategories": [
+        {
+          "name": "Foundation",
+          "slug": "foundation"
+        },
+        {
+          "name": "Lipstick",
+          "slug": "lipstick"
+        }
+      ]
+    }
+  ],
+  "newArrivals": [
+    {
+      "id": 1,
+      "name": "All-Around Safe Block",
+      "description": "All-Around Safe Block Sun",
+      "price": "125",
+      "rating": 4,
+      "image": "https://res.cloudinary.com/dwk5dwmzd/image/upload/v1742444080/uploads/img.png",
+      "discount": 30,
+      "categories": ["skincare"],
+      "subcategories": ["sun-protection"],
+      "skinTypes": ["All", "Sensitive"],
+      "priceValue": 25
+    },
+    {
+      "id": 2,
+      "name": "Super Aqua Snail Cream",
+      "description": "Skin Reinforcement Gel Type Cream",
+      "price": "20",
+      "rating": 5,
+      "image": "https://res.cloudinary.com/dwk5dwmzd/image/upload/v1742444080/uploads/img.png",
+      "categories": ["skincare"],
+      "subcategories": ["moisturizers"],
+      "skinTypes": ["Dry", "Normal"],
+      "priceValue": 25
+    },
+    {
+      "id": 3,
+      "name": "Clarifying Emulsion",
+      "description": "with Rice Seed Oil",
+      "price": "25",
+      "rating": 4,
+      "image": "https://res.cloudinary.com/dwk5dwmzd/image/upload/v1742444080/uploads/img.png",
+      "discount": 15,
+      "categories": ["skincare"],
+      "subcategories": ["cleansers"],
+      "skinTypes": ["Combination/Oily"],
+      "priceValue": 25
+    },
+    {
+      "id": 4,
+      "name": "Dewy Glow Jelly Cream",
+      "description": "With Jeju Cherry Blossom",
+      "price": "25",
+      "rating": 5,
+      "image": "https://res.cloudinary.com/dwk5dwmzd/image/upload/v1742444080/uploads/img.png",
+      "categories": ["skincare"],
+      "subcategories": ["moisturizers"],
+      "skinTypes": ["Dry", "Normal", "Sensitive"],
+      "priceValue": 25
+    },
+    {
+      "id": 5,
+      "name": "All-Around Safe Block",
+      "description": "All-Around Safe Block Sun",
+      "price": "25",
+      "rating": 4,
+      "image": "https://res.cloudinary.com/dwk5dwmzd/image/upload/v1742444080/uploads/img.png",
+      "discount": 20,
+      "categories": ["skincare"],
+      "subcategories": ["sun-protection"],
+      "skinTypes": ["All"],
+      "priceValue": 25
+    },
+    {
+      "id": 6,
+      "name": "Super Aqua Snail Cream",
+      "description": "Skin Reinforcement Gel Type Cream",
+      "price": "25",
+      "rating": 5,
+      "image": "https://res.cloudinary.com/dwk5dwmzd/image/upload/v1742444080/uploads/img.png",
+      "categories": ["skincare"],
+      "subcategories": ["moisturizers"],
+      "skinTypes": ["Dry", "Sensitive"],
+      "priceValue": 25
+    }
+  ],
+  "bestSellers": [
+    {
+      "id": 1,
+      "name": "All-Around Safe Block",
+      "description": "All-Around Safe Block Sun Milk",
+      "price": "25",
+      "rating": 5,
+      "image": "https://res.cloudinary.com/dwk5dwmzd/image/upload/v1742444080/uploads/img.png",
+      "discount": 5,
+      "categories": ["skincare"],
+      "subcategories": ["sun-protection"],
+      "skinTypes": ["All", "Sensitive"],
+      "priceValue": 25
+    },
+    {
+      "id": 2,
+      "name": "Super Aqua Snail Cream",
+      "description": "Skin Reinforcement Gel Type",
+      "price": "25",
+      "rating": 4,
+      "image": "https://res.cloudinary.com/dwk5dwmzd/image/upload/v1742444080/uploads/img.png",
+      "categories": ["skincare"],
+      "subcategories": ["moisturizers"],
+      "skinTypes": ["Normal"],
+      "priceValue": 25
+    },
+    {
+      "id": 3,
+      "name": "Clarifying Emulsion",
+      "description": "with Rice Seed Oil",
+      "price": "25",
+      "rating": 5,
+      "image": "https://res.cloudinary.com/dwk5dwmzd/image/upload/v1742444080/uploads/img.png",
+      "discount": 10,
+      "categories": ["skincare"],
+      "subcategories": ["cleansers"],
+      "skinTypes": ["Combination/Oily"],
+      "priceValue": 25
+    },
+    {
+      "id": 4,
+      "name": "Dewy Glow Jelly Cream",
+      "description": "Sheet Mask Collection",
+      "price": "25",
+      "rating": 4,
+      "image": "https://res.cloudinary.com/dwk5dwmzd/image/upload/v1742444080/uploads/img.png",
+      "categories": ["skincare"],
+      "subcategories": ["moisturizers"],
+      "skinTypes": ["Dry", "Normal"],
+      "priceValue": 25
+    },
+    {
+      "id": 5,
+      "name": "Clarifying Emulsion",
+      "description": "with Rice Seed Oil",
+      "price": "25",
+      "rating": 5,
+      "image": "https://res.cloudinary.com/dwk5dwmzd/image/upload/v1742444080/uploads/img.png",
+      "discount": 10,
+      "categories": ["skincare"],
+      "subcategories": ["cleansers"],
+      "skinTypes": ["Combination/Oily"],
+      "priceValue": 25
+    },
+    {
+      "id": 6,
+      "name": "Dewy Glow Jelly Cream",
+      "description": "Sheet Mask Collection",
+      "price": "25",
+      "rating": 4,
+      "image": "https://res.cloudinary.com/dwk5dwmzd/image/upload/v1742444080/uploads/img.png",
+      "categories": ["skincare"],
+      "subcategories": ["moisturizers"],
+      "skinTypes": ["Dry"],
+      "priceValue": 25
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+    "blogSection": [
+        {
+            "id": 1,
+            "name": "All-Around Safe Block ",
+            "description": "Reveal your skin's natural glow with our Lotus Glow Kit. Nourishing body and face creams ",
+            "imageUrl": "/blog.png"
+        },
+        {
+            "id": 2,
+            "name": "Super Aqua Snail Cream",
+            "description": "Reveal your skin's natural glow with our Lotus Glow Kit. Nourishing body and face creams ",
+            "imageUrl": "/blog.png"
+        },
+        {
+            "id": 3,
+            "name": "Clarifying Emulsion",
+            "description": "Reveal your skin's natural glow with our Lotus Glow Kit. Nourishing body and face creams ",
+            
+            "imageUrl": "/blog.png"
+        },
+        {
+            "id": 4,
+            "name": "Dewy Glow Jelly Cream",
+            "description": "Reveal your skin's natural glow with our Lotus Glow Kit. Nourishing body and face creams ",
+            "imageUrl": "/blog.png"
+        },
+        {
+            "id": 5,
+            "name": "All-Around Safe  ",
+            "description": "Reveal your skin's natural glow with our Lotus Glow Kit. Nourishing body and face creams ",
+            "imageUrl": "/blog.png"
+        },
+        {
+            "id": 6,
+            "name": "Super Aqua Snail Cream",
+            "description": "Reveal your skin's natural glow with our Lotus Glow Kit. Nourishing body and face creams ",
+            "imageUrl": "/blog.png"
+        },
+        {
+            "id": 7,
+            "name": "Clarifying Emulsion",
+            "description": "Reveal your skin's natural glow with our Lotus Glow Kit. Nourishing body and face creams ",
+            "imageUrl": "/blog.png"
+        },
+        {
+            "id": 8,
+            "name": "Dewy Glow Jelly Cream",
+            "description": "Reveal your skin's natural glow with our Lotus Glow Kit. Nourishing body and face creams ",
+            "imageUrl": "/blog.png"
+        }
+    ]
+}

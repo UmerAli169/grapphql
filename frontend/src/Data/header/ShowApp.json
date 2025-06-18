@@ -1,0 +1,42 @@
+{      "categories": ["Shop All", "Skincare", "Haircare", "Bath & Body", "The Next Big Thing","Oil Cleansers"],
+
+    "dropdownItems": [
+      {
+        "title": "Shop All",
+        "links": ["Bestsellers", "Collection", "Deals"]
+      },
+      {
+        "title": "Double-Cleanse",
+        "links": ["Cleansing Balms", "Oil Cleansers", "Water Cleansers"]
+      },
+      {
+        "title": "Exfoliators",
+        "links": ["Physical Exfoliators", "Chemical"]
+      },
+      {
+        "title": "Toners",
+        "links": ["Acid Toners", "Cleansing Toners"]
+      },
+      {
+        "title": "Moisturizers",
+        "links": ["Facial Moisturizer", "Facial Oil"]
+      },
+      {
+        "title": "Masks",
+        "links": ["Sheet Masks",  "Sleeping Masks"]
+      },
+      {
+        "title": "Eye Care",
+        "links": ["Eye Cream", "Eye Masks"]
+      },
+      {
+        "title": "Sun Protection",
+        "links": ["Sunscreen", "Makeup & SPF"]
+      },
+      {
+        "title": "Skin Type",
+        "links": ["Oily",  "Combination"]
+      }
+    ]
+  }
+  

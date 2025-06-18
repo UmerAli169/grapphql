@@ -1,0 +1,31 @@
+{
+    "bestsellers": {
+      "categories": ["Shop All", "Skincare", "Haircare", "Bath & Body", "The Next Big Thing"],
+      "products": [
+        {
+          "image": "howerpic.png",
+          "name": "Soft Finish",
+          "description": "All Around Safe Block Sun Milk SPF50+/PA++",
+          "price": "32$"
+        },
+        {
+          "image": "howerpic.png",
+          "name": "Soft Finish",
+          "description": "All Around Safe Block Sun Milk SPF50+/PA++",
+          "price": "32$"
+        },
+        {
+          "image": "howerpic.png",
+          "name": "Soft Finish",
+          "description": "All Around Safe Block Sun Milk SPF50+/PA++",
+          "price": "32$"
+        },{
+          "image": "howerpic.png",
+          "name": "Soft Finish",
+          "description": "All Around Safe Block Sun Milk SPF50+/PA++",
+          "price": "32$"
+        }
+      ]
+    }
+  }
+  

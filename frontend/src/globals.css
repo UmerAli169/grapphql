@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.bg-custom-gradient {
+  background: linear-gradient(
+    88.13deg,
+    #252525 -42.06%,
+    #3a3a3a 58.46%,
+    #323232 165.46%
+  );
+}
+
+
