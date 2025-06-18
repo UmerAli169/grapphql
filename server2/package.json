@@ -1,0 +1,27 @@
+{
+  "name": "server2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node build/index.js",
+    "dev": "tsc-watch --onSuccess \"npm start\""
+  },
+  "dependencies": {
+    "@apollo/server": "^4.12.2",
+    "@as-integrations/express4": "^1.0.0",
+    "@as-integrations/express5": "^1.0.0",
+    "@prisma/client": "^6.9.0",
+    "@types/express": "^5.0.2",
+    "@types/node": "^22.15.29",
+    "apollo-server-express": "^3.13.0",
+    "express": "^5.1.0",
+    "graphql": "^16.11.0",
+    "prisma": "^6.9.0",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
+  },
+  "devDependencies": {
+    "tsc-watch": "^7.1.1"
+  }
+}
