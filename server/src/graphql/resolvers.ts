@@ -29,9 +29,8 @@ export const resolvers = {
             firstName,
             lastName,
             email,
-            password,
-            salt: "staticSaltValue", // You can hash with salt properly later
-          },
+            password
+          }
         });
         return true;
       } catch (error: any) {

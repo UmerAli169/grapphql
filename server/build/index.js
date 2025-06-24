@@ -14,19 +14,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const server_1 = require("@apollo/server");
-const express4_1 = require("@as-integrations/express4");
 const cors_1 = __importDefault(require("cors"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const typeDefs_1 = require("./graphql/typeDefs");
 const resolvers_1 = require("./graphql/resolvers");
-const db_1 = __importDefault(require("./lib/db")); // 👈 import Prisma client
+const db_1 = __importDefault(require("./lib/db"));
+const auth_routes_1 = __importDefault(require("./routes/auth.routes"));
 const app = (0, express_1.default)();
+app.use(express_1.default.json());
+app.use("/api/auth", auth_routes_1.default);
+app.use('/rest', (req, res) => {
+    res.send("Welcome to the RESR API");
+});
+app.use((0, cors_1.default)());
 const server = new server_1.ApolloServer({
     typeDefs: typeDefs_1.typeDefs,
     resolvers: resolvers_1.resolvers,
 });
 app.use(body_parser_1.default.json());
-// ✅ Test DB connection before starting the server
 function testConnection() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -35,16 +40,17 @@ function testConnection() {
         }
         catch (err) {
             console.error('❌ DB connection failed:', err);
-            process.exit(1); // Exit if DB fails
+            yield db_1.default.$disconnect();
+            process.exit(1);
         }
     });
 }
 function startServer() {
     return __awaiter(this, void 0, void 0, function* () {
-        yield testConnection(); // 👈 Call this before Apollo
+        yield testConnection();
         yield server.start();
-        app.use('/graphql', (0, cors_1.default)(), express_1.default.json(), (0, express4_1.expressMiddleware)(server));
-        app.listen({ port: 4000 }, () => console.log('🚀 Server ready at http://localhost:4000/graphql'));
+        // app.use('/graphql', cors(), express.json(), expressMiddleware(server));
+        app.listen({ port: 5000 }, () => console.log('🚀 Server ready at http://localhost:5000/graphql'));
     });
 }
 startServer();
