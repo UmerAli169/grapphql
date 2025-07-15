@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.productResolvers = void 0;
-const db_1 = __importDefault(require("../lib/db"));
+const db_1 = __importDefault(require("../../lib/db"));
 exports.productResolvers = {
     Query: {
         getAllProducts: () => __awaiter(void 0, void 0, void 0, function* () {

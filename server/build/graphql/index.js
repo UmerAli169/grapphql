@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.resolvers = exports.typeDefs = void 0;
+const merge_1 = require("@graphql-tools/merge");
+const merge_2 = require("@graphql-tools/merge");
+const product_typeDefs_1 = require("./typeDefs/product.typeDefs");
+const Product_resolvers_1 = require("./reslovers/Product.resolvers");
+const user_typeDefs_1 = require("./typeDefs/user.typeDefs");
+const User_resolver_1 = require("./reslovers/User.resolver");
+exports.typeDefs = (0, merge_1.mergeTypeDefs)([product_typeDefs_1.productTypeDefs, user_typeDefs_1.userTypeDefs]);
+exports.resolvers = (0, merge_2.mergeResolvers)([Product_resolvers_1.productResolvers, User_resolver_1.userResolvers]);

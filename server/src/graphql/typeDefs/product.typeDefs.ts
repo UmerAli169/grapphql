@@ -1,8 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.productTypeDefs = void 0;
-const graphql_tag_1 = require("graphql-tag");
-exports.productTypeDefs = (0, graphql_tag_1.gql) `
+import { gql } from 'graphql-tag';
+
+export const productTypeDefs = gql`
   type Product {
     id: Int!
     productName: String!

@@ -1,14 +1,12 @@
-"use client";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Poppins, Montserrat } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import "../globals.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { AuthGuard } from "@/components/auth/protected/AuthGuard";
 import ToastProvider from "@/components/notificiton/ToastProvider";
-
+import ApolloWrapper from "@/components/providers/ApolloWrapper";
+import "../globals.css";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -31,28 +29,27 @@ const montserrat = Montserrat({
   variable: "--font-montserrat",
 });
 
+export const metadata: Metadata = {
+  title: "Ladoes Fashion",
+  description: "Discover trendy collections",
+};
+
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} ${montserrat.variable} antialiased flex flex-col min-h-screen w-full font-[poppins] bg-[#F9FAFC]`}
       >
-        <ToastProvider />
-        <Header />
-        <main className="flex-grow">
-          <AuthGuard
-            activeModal={""}
-            closeModal={() => {}}
-            setActiveModal={() => {}}
-          >
-            {children}
-          </AuthGuard>{" "}
-        </main>
-        <Footer />
+        <ApolloWrapper>
+          <ToastProvider />
+          <Header />
+          <main className="flex-grow">{children}</main>
+          <Footer />
+        </ApolloWrapper>
       </body>
     </html>
   );

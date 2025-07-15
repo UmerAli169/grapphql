@@ -8,10 +8,8 @@ import prisma from '../lib/db';
 import { generateToken } from "../utils/generatetoken";
 
 export const registerUser = async (req: any, res: any) => {
-    console.log(res.body)
     try {
         const { firstName, lastName, email, password } = req.body;
-        console.log(firstName, lastName, email, password);
 
         const existingUser = await prisma.user.findUnique({ where: { email } })
         if (existingUser) {
@@ -29,7 +27,6 @@ export const registerUser = async (req: any, res: any) => {
         });
 
         const token = generateToken(newUser.id);
-
         res
             .cookie("token", token, {
                 httpOnly: true,
@@ -59,11 +56,9 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
             res.status(400).json({ message: "Invalid credentials" });
             return;
         }
-
-        const token = jwt.sign({ userId: user._id }, "umeralikhan", {
+        const token = jwt.sign({ userId: user.id }, "umeralikhan", {
             expiresIn: "7d",
         });
-
         res
             .cookie("token", token, {
                 httpOnly: true,
@@ -76,6 +71,7 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
         res.status(500).json({ message: "Server error" });
     }
 };
+
 // export const recoverPassword = async (
 //     req: Request,
 //     res: Response
@@ -208,3 +204,4 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
 //         res.status(500).json({ message: "Server error" });
 //     }
 // }
+

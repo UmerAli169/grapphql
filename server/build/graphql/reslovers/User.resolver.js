@@ -12,31 +12,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.productResolvers = void 0;
-const db_1 = __importDefault(require("../lib/db"));
-exports.productResolvers = {
+exports.userResolvers = void 0;
+const db_1 = __importDefault(require("../../lib/db"));
+exports.userResolvers = {
     Query: {
-        getAllProducts: () => __awaiter(void 0, void 0, void 0, function* () {
-            return yield db_1.default.product.findMany({
-                include: { user: true },
-                orderBy: { createdAt: 'desc' },
-            });
-        }),
-    },
-    Mutation: {
-        createProduct: (_1, _a, _b) => __awaiter(void 0, [_1, _a, _b], void 0, function* (_, { input }, { user }) {
+        me: (_1, __1, _a) => __awaiter(void 0, [_1, __1, _a], void 0, function* (_, __, { user }) {
             if (!user) {
-                throw new Error("Unauthorized: You must be logged in to create a product.");
+                throw new Error("Unauthorized");
             }
-            return yield db_1.default.product.create({
-                data: Object.assign(Object.assign({}, input), { user: { connect: { id: user.id } } }),
+            return db_1.default.user.findUnique({
+                where: { id: user.id },
+                include: { products: true },
             });
         }),
     },
-    Product: {
-        user: (parent) => {
-            return db_1.default.user.findUnique({
-                where: { id: parent.userId },
+    User: {
+        products: (parent) => {
+            return db_1.default.product.findMany({
+                where: { userId: parent.id },
             });
         },
     },

@@ -18,10 +18,8 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const db_1 = __importDefault(require("../lib/db"));
 const generatetoken_1 = require("../utils/generatetoken");
 const registerUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(res.body);
     try {
         const { firstName, lastName, email, password } = req.body;
-        console.log(firstName, lastName, email, password);
         const existingUser = yield db_1.default.user.findUnique({ where: { email } });
         if (existingUser) {
             return res.status(400).json({ message: "User already exists" });
@@ -64,7 +62,7 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             res.status(400).json({ message: "Invalid credentials" });
             return;
         }
-        const token = jsonwebtoken_1.default.sign({ userId: user._id }, "umeralikhan", {
+        const token = jsonwebtoken_1.default.sign({ userId: user.id }, "umeralikhan", {
             expiresIn: "7d",
         });
         res

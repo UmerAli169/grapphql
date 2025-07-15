@@ -7,11 +7,47 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-  model User {
-    id String @id @default(uuid())
-    firstName String  
-    lastName String
-    email String @unique
-    password String
-  }
-    
+enum Category {
+  CLOTHING
+  ELECTRONICS
+  BEAUTY
+}
+
+enum Size {
+  XS
+  S
+  M
+  L
+  XL
+}
+
+model User {
+  id         Int       @id @default(autoincrement())
+  firstName  String
+  lastName   String
+  email      String    @unique
+  password   String
+  products   Product[]
+}
+
+model Product {
+  id                 Int       @id @default(autoincrement())
+  productName        String    @db.VarChar(255)
+  productPrice       Float
+  productDescription String
+  discount           Float
+  category           Category
+  subCategory        String?
+  images             String[]
+  size               Size
+  recommendedFor     String?
+  title              String
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+
+  userId             Int
+  user               User      @relation(fields: [userId], references: [id])
+
+  @@index([productName])
+  @@index([userId])
+}

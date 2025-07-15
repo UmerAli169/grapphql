@@ -2,7 +2,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 const api = axios.create({
-  baseURL: "http://localhost:5000/",
+  baseURL: "http://localhost:5000",
   withCredentials: true,
   headers: { "Content-Type": "application/json" },
 });
@@ -21,7 +21,7 @@ api.interceptors.response.use(
 export const register = async (data: any) => {
   try {
     const response = await api.post("/api/auth/register", data);
-    toast.success(response.data.message ||"Registration successful!");
+    toast.success(response.data.message || "Registration successful!");
     return response.data;
   } catch (error) {
     console.log(error);
@@ -130,7 +130,7 @@ export const createReview = async (formData: any) => {
     const response = await api.post("/api/reviews", formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
-    toast.success(response.data.message ||"Review submitted successfully!");
+    toast.success(response.data.message || "Review submitted successfully!");
     return response.data;
   } catch (error) {
     console.log(error);
