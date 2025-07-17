@@ -7,35 +7,41 @@ import {
   DELETE_PRODUCT,
 } from "@/lib/graphql/queries";
 
+type CategoryEnum = "ELECTRONICS" | "CLOTHING" | "FOOD" | "FURNITURE"; // adjust to your enum values
+
 export default function ProductManagement() {
   const [productData, setProductData] = useState({
     productName: "",
     productPrice: "",
     productDescription: "",
-    category: "",
+    category: "" as CategoryEnum | "",
     subCategory: "",
+    discount: "",
     images: [],
+    size: "",
+    recommendedFor: "",
+    title: "",
   });
-  const [imagePreviews, setImagePreviews]: any = useState([]);
-  const [notification, setNotification]: any = useState(null);
 
-  // GraphQL operations
+  const [imagePreviews, setImagePreviews] = useState<string[]>([]);
+  const [notification, setNotification] = useState<{ type: string; message: string } | null>(null);
+
   const { loading, error, data, refetch } = useQuery(GET_ALL_PRODUCTS);
   const [createProduct] = useMutation(CREATE_PRODUCT);
   const [deleteProduct] = useMutation(DELETE_PRODUCT);
-  const handleInputChange = (e: any) => {
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setProductData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleImageUpload = (e: any) => {
-    const files = Array.from(e.target.files);
-    const previews = files.map((file: any) => URL.createObjectURL(file));
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files || []);
+    const previews = files.map((file) => URL.createObjectURL(file));
     setImagePreviews([...imagePreviews, ...previews]);
-    // In a real app, you would upload to storage and get URLs
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       await createProduct({
@@ -43,23 +49,24 @@ export default function ProductManagement() {
           input: {
             ...productData,
             productPrice: parseFloat(productData.productPrice),
-            images: imagePreviews, // In real app, use actual image URLs
+            discount: parseFloat(productData.discount),
+            images: imagePreviews,
           },
         },
       });
-      setNotification({
-        type: "success",
-        message: "Product created successfully!",
-      });
+      setNotification({ type: "success", message: "Product created successfully!" });
       refetch();
-      // Reset form
       setProductData({
         productName: "",
         productPrice: "",
         productDescription: "",
         category: "",
         subCategory: "",
+        discount: "",
         images: [],
+        size: "",
+        recommendedFor: "",
+        title: "",
       });
       setImagePreviews([]);
     } catch (err: any) {
@@ -67,7 +74,7 @@ export default function ProductManagement() {
     }
   };
 
-  const handleDelete = async (id: any) => {
+  const handleDelete = async (id: number) => {
     if (confirm("Are you sure you want to delete this product?")) {
       try {
         await deleteProduct({ variables: { id } });
@@ -80,14 +87,12 @@ export default function ProductManagement() {
   };
 
   if (loading) return <div className="p-4">Loading...</div>;
-  if (error)
-    return <div className="p-4 text-red-500">Error: {error.message}</div>;
+  if (error) return <div className="p-4 text-red-500">Error: {error.message}</div>;
 
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-6">Product Management</h1>
 
-      {/* Notification */}
       {notification && (
         <div
           className={`p-3 mb-4 rounded-md ${
@@ -105,66 +110,32 @@ export default function ProductManagement() {
         <h2 className="text-xl font-semibold mb-4">Add New Product</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium mb-1">
-                Product Name
-              </label>
-              <input
-                type="text"
-                name="productName"
-                value={productData.productName}
-                onChange={handleInputChange}
-                className="w-full p-2 border rounded"
-                required
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium mb-1">Price</label>
-              <input
-                type="number"
-                name="productPrice"
-                value={productData.productPrice}
-                onChange={handleInputChange}
-                className="w-full p-2 border rounded"
-                required
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium mb-1">Category</label>
-              <input
-                type="text"
-                name="category"
-                value={productData.category}
-                onChange={handleInputChange}
-                className="w-full p-2 border rounded"
-                required
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium mb-1">
-                Sub Category
-              </label>
-              <input
-                type="text"
-                name="subCategory"
-                value={productData.subCategory}
-                onChange={handleInputChange}
-                className="w-full p-2 border rounded"
-                required
-              />
-            </div>
+            <Input name="productName" label="Product Name" value={productData.productName} onChange={handleInputChange} />
+            <Input name="productPrice" type="number" label="Price" value={productData.productPrice} onChange={handleInputChange} />
+            <Input name="discount" type="number" label="Discount" value={productData.discount} onChange={handleInputChange} />
+            
+            <Select
+              name="category"
+              label="Category"
+              value={productData.category}
+              onChange={handleInputChange}
+              options={["ELECTRONICS", "CLOTHING", "FOOD", "FURNITURE"]}
+            />
+            
+            <Input name="subCategory" label="Sub Category" value={productData.subCategory} onChange={handleInputChange} />
+            <Input name="size" label="Size" value={productData.size} onChange={handleInputChange} />
+            <Input name="recommendedFor" label="Recommended For" value={productData.recommendedFor} onChange={handleInputChange} />
+            <Input name="title" label="Title" value={productData.title} onChange={handleInputChange} />
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-1">
-              Description
-            </label>
+            <label className="block text-sm font-medium mb-1">Description</label>
             <textarea
               name="productDescription"
               value={productData.productDescription}
               onChange={handleInputChange}
               className="w-full p-2 border rounded"
-              rows="3"
+              rows={3}
               required
             />
           </div>
@@ -179,7 +150,7 @@ export default function ProductManagement() {
               accept="image/*"
             />
             <div className="flex flex-wrap gap-2 mt-2">
-              {imagePreviews.map((preview: any, index: any) => (
+              {imagePreviews.map((preview, index) => (
                 <img
                   key={index}
                   src={preview}
@@ -208,6 +179,7 @@ export default function ProductManagement() {
               <tr className="bg-gray-100">
                 <th className="p-2 text-left">Name</th>
                 <th className="p-2 text-left">Price</th>
+                <th className="p-2 text-left">Discount</th>
                 <th className="p-2 text-left">Category</th>
                 <th className="p-2 text-left">Actions</th>
               </tr>
@@ -217,6 +189,7 @@ export default function ProductManagement() {
                 <tr key={product.id} className="border-t">
                   <td className="p-2">{product.productName}</td>
                   <td className="p-2">${product.productPrice}</td>
+                  <td className="p-2">${product.discount}</td>
                   <td className="p-2">
                     {product.category}/{product.subCategory}
                   </td>
@@ -234,6 +207,70 @@ export default function ProductManagement() {
           </table>
         </div>
       </div>
+    </div>
+  );
+}
+
+function Input({
+  name,
+  label,
+  value,
+  onChange,
+  type = "text",
+}: {
+  name: string;
+  label: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<any>) => void;
+  type?: string;
+}) {
+  return (
+    <div>
+      <label className="block text-sm font-medium mb-1">{label}</label>
+      <input
+        type={type}
+        name={name}
+        value={value}
+        onChange={onChange}
+        className="w-full p-2 border rounded"
+        required
+      />
+    </div>
+  );
+}
+
+function Select({
+  name,
+  label,
+  value,
+  onChange,
+  options,
+}: {
+  name: string;
+  label: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  options: string[];
+}) {
+  return (
+    <div>
+      <label className="block text-sm font-medium mb-1">{label}</label>
+      <select
+        name={name}
+        value={value}
+        onChange={onChange}
+        className="w-full p-2 border rounded"
+        required
+      >
+        <option value="" disabled>
+          -- Select {label} --
+        </option>
+        {options.map((opt) => (
+          <option key={opt} value={opt}>
+            {opt}
+          </option>
+        ))}
+      </select>
     </div>
   );
 }

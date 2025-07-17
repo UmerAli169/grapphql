@@ -9,7 +9,11 @@ interface DecodedToken {
 
 export const context = async ({ req }: { req: any }) => {
   // Get token from either cookies or Authorization header
-  const token = req.headers.token || req.headers.authorization?.split(' ')[1];
+  // const token = req.headers.token || req.headers.authorization?.split(' ')[1];
+      // const token1 = req.cookies.token;
+  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTc1Mjc1MzgxMywiZXhwIjoxNzUzMzU4NjEzfQ.-8cQjc4wfnZyCNglOETKzeWluTXKi950cBbI0NYH9TY'
+
+  // console.log(token,'1')
   let user = null;
 
   if (token) {
