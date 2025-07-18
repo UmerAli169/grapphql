@@ -21,26 +21,25 @@ const index_1 = require("./graphql/index");
 const db_1 = __importDefault(require("./lib/db"));
 const auth_routes_1 = __importDefault(require("./routes/auth.routes"));
 const context_1 = require("./utils/context");
+const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const app = (0, express_1.default)();
-// Apply CORS globally with proper configuration
 const corsOptions = {
-    origin: ['http://localhost:3000', 'http://localhost:5000'], // Removed trailing slashes
+    origin: ["http://localhost:3000", "http://localhost:5000"],
     credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization']
 };
 app.use((0, cors_1.default)(corsOptions));
 app.use(body_parser_1.default.json());
 app.use(express_1.default.json());
 // Routes
+app.use((0, cookie_parser_1.default)());
 app.use("/api/auth", auth_routes_1.default);
-app.get('/rest', (req, res) => {
+app.get("/rest", (req, res) => {
     res.send("Welcome to the REST API");
 });
 const server = new server_1.ApolloServer({
     typeDefs: index_1.typeDefs,
     resolvers: index_1.resolvers,
-    introspection: process.env.NODE_ENV !== 'production',
+    introspection: process.env.NODE_ENV !== "production",
     csrfPrevention: true,
     allowBatchedHttpRequests: true,
 });
@@ -48,10 +47,10 @@ function testConnection() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             yield db_1.default.$connect();
-            console.log('✅ Connected to DB!');
+            console.log("✅ Connected to DB!");
         }
         catch (err) {
-            console.error('❌ DB connection failed:', err);
+            console.error("❌ DB connection failed:", err);
             yield db_1.default.$disconnect();
             process.exit(1);
         }
@@ -61,19 +60,18 @@ function startServer() {
     return __awaiter(this, void 0, void 0, function* () {
         yield testConnection();
         yield server.start();
-        // Apply Apollo middleware after server starts
-        app.use('/graphql', express_1.default.json(), (0, express4_1.expressMiddleware)(server, {
-            context: context_1.context
+        app.use("/graphql", express_1.default.json(), (0, express4_1.expressMiddleware)(server, {
+            context: context_1.context,
         }));
         app.listen({ port: 5000 }, () => {
-            console.log('🚀 Server ready at http://localhost:5000');
-            console.log('GraphQL endpoint: http://localhost:5000/graphql');
-            console.log('REST endpoint: http://localhost:5000/rest');
-            console.log('Auth endpoint: http://localhost:5000/api/auth');
+            console.log("🚀 Server ready at http://localhost:5000");
+            console.log("GraphQL endpoint: http://localhost:5000/graphql");
+            console.log("REST endpoint: http://localhost:5000/rest");
+            console.log("Auth endpoint: http://localhost:5000/api/auth");
         });
     });
 }
 startServer().catch((err) => {
-    console.error('Failed to start server:', err);
+    console.error("Failed to start server:", err);
     process.exit(1);
 });

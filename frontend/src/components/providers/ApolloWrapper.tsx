@@ -8,5 +8,6 @@ export default function ApolloWrapper({
 }: {
   children: React.ReactNode;
 }) {
+  
   return <ApolloProvider client={client}>{children}</ApolloProvider>;
 }

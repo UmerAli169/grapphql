@@ -39,7 +39,7 @@ export const login = async (data: any) => {
 };
 
 export const recoverPassword = async (email: any) => {
-  try {
+  try { 
     const response = await api.post("/api/auth/recover-password", { email });
     toast.success(response.data.message || "Password recovery email sent!");
     return response.data;

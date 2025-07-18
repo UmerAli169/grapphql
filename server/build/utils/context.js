@@ -17,17 +17,14 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
 const context = (_a) => __awaiter(void 0, [_a], void 0, function* ({ req }) {
-    // Get token from either cookies or Authorization header
-    // const token = req.headers.token || req.headers.authorization?.split(' ')[1];
-    // const token1 = req.cookies.token;
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTc1Mjc1MzgxMywiZXhwIjoxNzUzMzU4NjEzfQ.-8cQjc4wfnZyCNglOETKzeWluTXKi950cBbI0NYH9TY';
-    // console.log(token,'1')
+    const token = req.cookie;
+    console.log(token, 'pppp');
     let user = null;
     if (token) {
         try {
             const decoded = jsonwebtoken_1.default.verify(token, "umeralikhan");
             user = yield prisma.user.findUnique({
-                where: { id: decoded.userId }
+                where: { id: decoded.userId },
             });
         }
         catch (err) {
@@ -36,7 +33,7 @@ const context = (_a) => __awaiter(void 0, [_a], void 0, function* ({ req }) {
     }
     return {
         user,
-        prisma
+        prisma,
     };
 });
 exports.context = context;

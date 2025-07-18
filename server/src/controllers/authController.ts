@@ -3,73 +3,75 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { validationResult } from "express-validator";
 import * as crypto from "crypto";
-import prisma from '../lib/db';
+import prisma from "../lib/db";
 
 import { generateToken } from "../utils/generatetoken";
 
 export const registerUser = async (req: any, res: any) => {
-    try {
-        const { firstName, lastName, email, password } = req.body;
+  try {
+    const { firstName, lastName, email, password } = req.body;
 
-        const existingUser = await prisma.user.findUnique({ where: { email } })
-        if (existingUser) {
-            return res.status(400).json({ message: "User already exists" });
-        }
-
-        const hashedPassword = await bcrypt.hash(password, 10);
-        const newUser: any = await prisma.user.create({
-            data: {
-                firstName,
-                lastName,
-                email,
-                password: hashedPassword,
-            }
-        });
-
-        const token = generateToken(newUser.id);
-        res
-            .cookie("token", token, {
-                httpOnly: true,
-                secure: process.env.NODE_ENV === "production",
-                sameSite: "strict",
-                maxAge: 7 * 24 * 60 * 60 * 1000,
-            })
-            .status(201)
-            .json({ message: "User registered successfully", user: newUser });
-    } catch (error) {
-        res.status(500).json({ message: "Server error" });
+    const existingUser = await prisma.user.findUnique({ where: { email } });
+    if (existingUser) {
+      return res.status(400).json({ message: "User already exists" });
     }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser: any = await prisma.user.create({
+      data: {
+        firstName,
+        lastName,
+        email,
+        password: hashedPassword,
+      },
+    });
+
+    const token = generateToken(newUser.id);
+    res
+      .cookie("token", token, {
+        httpOnly: true,
+        secure: false,
+        sameSite: "none",
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+        path: "/",
+      })
+      .status(201)
+      .json({ message: "User registered successfully", user: newUser });
+  } catch (error) {
+    res.status(500).json({ message: "Server error" });
+  }
 };
 
 export const loginUser = async (req: Request, res: Response): Promise<void> => {
-    try {
-        const { email, password } = req.body;
+  try {
+    const { email, password } = req.body;
 
-        const user: any = await prisma.user.findUnique({ where: { email } });
-        if (!user) {
-            res.status(400).json({ message: "Invalid credentials" });
-            return;
-        }
-
-        const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) {
-            res.status(400).json({ message: "Invalid credentials" });
-            return;
-        }
-        const token = jwt.sign({ userId: user.id }, "umeralikhan", {
-            expiresIn: "7d",
-        });
-        res
-            .cookie("token", token, {
-                httpOnly: true,
-                secure: process.env.NODE_ENV === "production",
-                sameSite: "strict",
-                maxAge: 7 * 24 * 60 * 60 * 1000,
-            })
-            .json({ message: "Login successful", user, token });
-    } catch (error) {
-        res.status(500).json({ message: "Server error" });
+    const user: any = await prisma.user.findUnique({ where: { email } });
+    if (!user) {
+      res.status(400).json({ message: "Invalid credentials" });
+      return;
     }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      res.status(400).json({ message: "Invalid credentials" });
+      return;
+    }
+    const token = jwt.sign({ userId: user.id }, "umeralikhan", {
+      expiresIn: "7d",
+    });
+    res
+      .cookie("token", token, {
+        httpOnly: true,
+        secure: false,
+        sameSite: "none",
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+        path: "/",
+      })
+      .json({ message: "Login successful", user, token });
+  } catch (error) {
+    res.status(500).json({ message: "Server error" });
+  }
 };
 
 // export const recoverPassword = async (
@@ -177,7 +179,6 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
 //     }
 // };
 
-
 // export const changepassword = async (req: any, res: any) => {
 //     const { oldPassword, newPassword } = req.body;
 //     const userId = req.userId;
@@ -204,4 +205,3 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
 //         res.status(500).json({ message: "Server error" });
 //     }
 // }
-

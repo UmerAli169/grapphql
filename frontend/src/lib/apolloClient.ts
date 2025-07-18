@@ -1,14 +1,11 @@
-import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';
-
-const httpLink = new HttpLink({
-    uri: 'http://localhost:5000/graphql', // Replace with your actual endpoint
-});
+import { ApolloClient, InMemoryCache, HttpLink } from "@apollo/client";
 
 const client = new ApolloClient({
-    link: httpLink,
-    cache: new InMemoryCache(),
-    credentials: "include", // very important for cookies!
-
+  link: new HttpLink({
+    uri: "http://127.0.0.1:5000/graphql",
+    credentials: "include", // This is correct for sending cookies
+  }),
+  cache: new InMemoryCache(),
 });
 
-export default client;
+export default client;  

@@ -25,6 +25,9 @@
     {
       "label": "BLOG",
       "enabled": true
+    },{
+      "label": "AddProduct",
+      "enabled": true
     }
   ],
   "icons": [

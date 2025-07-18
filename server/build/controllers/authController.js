@@ -31,15 +31,16 @@ const registerUser = (req, res) => __awaiter(void 0, void 0, void 0, function* (
                 lastName,
                 email,
                 password: hashedPassword,
-            }
+            },
         });
         const token = (0, generatetoken_1.generateToken)(newUser.id);
         res
             .cookie("token", token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            sameSite: "strict",
+            secure: false,
+            sameSite: "none",
             maxAge: 7 * 24 * 60 * 60 * 1000,
+            path: "/",
         })
             .status(201)
             .json({ message: "User registered successfully", user: newUser });
@@ -68,9 +69,10 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res
             .cookie("token", token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            sameSite: "strict",
+            secure: false,
+            sameSite: "none",
             maxAge: 7 * 24 * 60 * 60 * 1000,
+            path: "/",
         })
             .json({ message: "Login successful", user, token });
     }

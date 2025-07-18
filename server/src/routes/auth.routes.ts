@@ -23,19 +23,14 @@ router.post("/login", loginValidation, loginUser);
 // router.post("/change-password", authenticateUser, changepassword);
 // router.put("/update-contact-info", authenticateUser, updateContactInfo);
 
-// router.get("/me", authenticateUser, async (req: any, res: any) => {
-//     const authReq = req as any;
+router.get("/me", authenticateUser, async (req: any, res: any) => {
 
-//     try {
-//         const user = await User.findById(authReq.user.id).select("-password");
-//         if (!user) {
-//             return res.status(404).json({ message: "User not found" });
-//         }
-//         res.json(user);
-//     } catch (error) {
-//         res.status(500).json({ message: "Server error" });
-//     }
-// });
+    try {
+            return res.status(200).json({ message: "User not found" });
+    } catch (error) {
+        res.status(500).json({ message: "Server error" });
+    }
+});
 
 
 

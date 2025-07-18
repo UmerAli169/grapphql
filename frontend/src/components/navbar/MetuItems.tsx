@@ -1,15 +1,16 @@
+"use client";
+
 import React, { useState } from "react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import NavbarShowAllDropDown from "../overlaymenu/NavbarShowAllDropDown";
 import NavbarBestSellerDropdown from "../overlaymenu/NavbarBestSellerDropdown";
-import { useRouter } from "next/navigation";
 
 interface MenuItemProps {
   label: string;
   enabled: boolean;
   hasSubmenu?: boolean;
   disableHover?: boolean;
-  onClick?: () => void; 
+  onClick?: () => void;
 }
 
 const MenuItem: React.FC<MenuItemProps> = ({
@@ -20,56 +21,58 @@ const MenuItem: React.FC<MenuItemProps> = ({
   onClick,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const router = useRouter(); // 👈 Add router here
+  const router = useRouter();
+
   const handleClick = (e: React.MouseEvent) => {
-    e.preventDefault(); 
+    e.preventDefault();
     if (onClick) onClick();
-    router.push(
-      // 👈 Handle routing manually
-      label.toLowerCase() === "shop all"
-        ? "/Catalog"
-        : label.toLowerCase() === "about us"
-        ? "/AboutUs"
-        : label.toLowerCase() === "blog"
-        ? "/Blogs"
-        : "/"
-    );
+
+    const lower = label.toLowerCase();
+    if (lower === "shop all") router.push("/Catalog");
+    else if (lower === "about us") router.push("/AboutUs");
+    else if (lower === "blog") router.push("/Blogs");
+    else if (lower === "addproduct") router.push("/AddProduct");
+    else router.push("/");
   };
+
   return (
     <div
-      className="  flex justify-between items-center w-full"
+      className="flex justify-between items-center w-full"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <Link
-        href="#"
-        onClick={handleClick} 
+      <button
+        onClick={handleClick}
         className={`flex w-full items-center ${
           enabled ? "text-black" : "text-gray-400"
         }`}
       >
         <span
-          className={`relative text-[16px] text-[#383838] hover:text-[#F5A3B7] font-medium whitespace-nowrap 
-          ${
-            !disableHover
-              ? "hover:bg-gray-200 after:content-[''] after:absolute after:left-0 after:bottom-[-22px] after:w-full after:h-[4px] after:bg-[#F5A3B7] after:opacity-0 hover:after:opacity-100 hover:after:h-[4px]"
-              : ""
-          }`}
+          className={`relative text-[16px] text-[#383838] font-medium whitespace-nowrap 
+            ${
+              !disableHover
+                ? "hover:text-[#F5A3B7] hover:bg-gray-200 after:content-[''] after:absolute after:left-0 after:bottom-[-22px] after:w-full after:h-[4px] after:bg-[#F5A3B7] after:opacity-0 hover:after:opacity-100"
+                : ""
+            }`}
         >
           {label}
         </span>
-      </Link>
+      </button>
 
       {hasSubmenu && (
         <img
           src="/chevron.svg"
           alt="submenu"
-          className="w-[12px]  md:block sm:block hidden "
+          className="w-[12px] md:block sm:block hidden"
         />
       )}
 
-      {isHovered && label === "SHOP ALL" && <NavbarShowAllDropDown />}
-      {isHovered && label === "BESTSELLERS" && <NavbarBestSellerDropdown />}
+      {isHovered && label.toUpperCase() === "SHOP ALL" && (
+        <NavbarShowAllDropDown />
+      )}
+      {isHovered && label.toUpperCase() === "BESTSELLERS" && (
+        <NavbarBestSellerDropdown />
+      )}
     </div>
   );
 };
