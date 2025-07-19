@@ -8,8 +8,9 @@ interface DecodedToken {
 }
 
 export const context = async ({ req }: { req: any }) => {
-  const token = req.cookie;
-console.log(token,'pppp')
+  // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc1Mjg3MDQxNywiZXhwIjoxNzUzNDc1MjE3fQ.AUZ2oIOCbfB_g0-91b0Mfh6B-zxAM4V-cFAOo0S-w8Y';
+  let token = req.cookies.token
+  console.log(token, 'pppp')
   let user = null;
 
   if (token) {

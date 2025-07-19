@@ -7,7 +7,7 @@ import {
   DELETE_PRODUCT,
 } from "@/lib/graphql/queries";
 
-type CategoryEnum = "ELECTRONICS" | "CLOTHING" | "FOOD" | "FURNITURE"; // adjust to your enum values
+type CategoryEnum = "ELECTRONICS" | "CLOTHING" | "BEAUTY"; // adjust to your enum values
 
 export default function ProductManagement() {
   const [productData, setProductData] = useState({
@@ -24,13 +24,20 @@ export default function ProductManagement() {
   });
 
   const [imagePreviews, setImagePreviews] = useState<string[]>([]);
-  const [notification, setNotification] = useState<{ type: string; message: string } | null>(null);
+  const [notification, setNotification] = useState<{
+    type: string;
+    message: string;
+  } | null>(null);
 
   const { loading, error, data, refetch } = useQuery(GET_ALL_PRODUCTS);
   const [createProduct] = useMutation(CREATE_PRODUCT);
   const [deleteProduct] = useMutation(DELETE_PRODUCT);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
     const { name, value } = e.target;
     setProductData((prev) => ({ ...prev, [name]: value }));
   };
@@ -54,7 +61,10 @@ export default function ProductManagement() {
           },
         },
       });
-      setNotification({ type: "success", message: "Product created successfully!" });
+      setNotification({
+        type: "success",
+        message: "Product created successfully!",
+      });
       refetch();
       setProductData({
         productName: "",
@@ -87,7 +97,8 @@ export default function ProductManagement() {
   };
 
   if (loading) return <div className="p-4">Loading...</div>;
-  if (error) return <div className="p-4 text-red-500">Error: {error.message}</div>;
+  if (error)
+    return <div className="p-4 text-red-500">Error: {error.message}</div>;
 
   return (
     <div className="container mx-auto p-4">
@@ -110,26 +121,65 @@ export default function ProductManagement() {
         <h2 className="text-xl font-semibold mb-4">Add New Product</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Input name="productName" label="Product Name" value={productData.productName} onChange={handleInputChange} />
-            <Input name="productPrice" type="number" label="Price" value={productData.productPrice} onChange={handleInputChange} />
-            <Input name="discount" type="number" label="Discount" value={productData.discount} onChange={handleInputChange} />
-            
+            <Input
+              name="productName"
+              label="Product Name"
+              value={productData.productName}
+              onChange={handleInputChange}
+            />
+            <Input
+              name="productPrice"
+              type="number"
+              label="Price"
+              value={productData.productPrice}
+              onChange={handleInputChange}
+            />
+            <Input
+              name="discount"
+              type="number"
+              label="Discount"
+              value={productData.discount}
+              onChange={handleInputChange}
+            />
+
             <Select
               name="category"
               label="Category"
               value={productData.category}
               onChange={handleInputChange}
-              options={["ELECTRONICS", "CLOTHING", "FOOD", "FURNITURE"]}
+              options={["ELECTRONICS", "CLOTHING", "BEAUTY"]}
             />
-            
-            <Input name="subCategory" label="Sub Category" value={productData.subCategory} onChange={handleInputChange} />
-            <Input name="size" label="Size" value={productData.size} onChange={handleInputChange} />
-            <Input name="recommendedFor" label="Recommended For" value={productData.recommendedFor} onChange={handleInputChange} />
-            <Input name="title" label="Title" value={productData.title} onChange={handleInputChange} />
+
+            <Input
+              name="subCategory"
+              label="Sub Category"
+              value={productData.subCategory}
+              onChange={handleInputChange}
+            />
+            <Input
+              name="size"
+              label="Size"
+              value={productData.size}
+              onChange={handleInputChange}
+            />
+            <Input
+              name="recommendedFor"
+              label="Recommended For"
+              value={productData.recommendedFor}
+              onChange={handleInputChange}
+            />
+            <Input
+              name="title"
+              label="Title"
+              value={productData.title}
+              onChange={handleInputChange}
+            />
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-1">Description</label>
+            <label className="block text-sm font-medium mb-1">
+              Description
+            </label>
             <textarea
               name="productDescription"
               value={productData.productDescription}

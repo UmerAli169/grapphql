@@ -13,13 +13,6 @@ enum Category {
   BEAUTY
 }
 
-enum Size {
-  XS
-  S
-  M
-  L
-  XL
-}
 
 model User {
   id         Int       @id @default(autoincrement())
@@ -39,7 +32,7 @@ model Product {
   category           Category
   subCategory        String?
   images             String[]
-  size               Size
+  size               String
   recommendedFor     String?
   title              String
   createdAt          DateTime  @default(now())

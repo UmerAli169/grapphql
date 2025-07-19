@@ -31,7 +31,7 @@ export const registerUser = async (req: any, res: any) => {
       .cookie("token", token, {
         httpOnly: true,
         secure: false,
-        sameSite: "none",
+        sameSite: "lax",
         maxAge: 7 * 24 * 60 * 60 * 1000,
         path: "/",
       })
@@ -64,10 +64,11 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
       .cookie("token", token, {
         httpOnly: true,
         secure: false,
-        sameSite: "none",
+        sameSite: "lax",
         maxAge: 7 * 24 * 60 * 60 * 1000,
         path: "/",
       })
+
       .json({ message: "Login successful", user, token });
   } catch (error) {
     res.status(500).json({ message: "Server error" });

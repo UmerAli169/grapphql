@@ -7,8 +7,6 @@ import "slick-carousel/slick/slick-theme.css";
 import ToastProvider from "@/components/notificiton/ToastProvider";
 import ApolloWrapper from "@/components/providers/ApolloWrapper";
 
-import { ApolloProvider } from "@apollo/client";
-// import client from "@/lib/apolloClient";
 import "../globals.css";
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,17 +35,7 @@ export const metadata: Metadata = {
   description: "Discover trendy collections",
 };
 
-import { ApolloClient, InMemoryCache, HttpLink } from "@apollo/client";
-
-const client = new ApolloClient({
-  link: new HttpLink({
-    uri: "http://127.0.0.1:5000/graphql",
-    credentials: "include", // This is correct for sending cookies
-  }),
-  cache: new InMemoryCache(),
-});
-
-// export default client;  
+// export default client;
 export default function RootLayout({
   children,
 }: {

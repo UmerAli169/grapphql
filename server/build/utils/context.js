@@ -17,7 +17,8 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
 const context = (_a) => __awaiter(void 0, [_a], void 0, function* ({ req }) {
-    const token = req.cookie;
+    // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc1Mjg3MDQxNywiZXhwIjoxNzUzNDc1MjE3fQ.AUZ2oIOCbfB_g0-91b0Mfh6B-zxAM4V-cFAOo0S-w8Y';
+    let token = req.cookies.token;
     console.log(token, 'pppp');
     let user = null;
     if (token) {
