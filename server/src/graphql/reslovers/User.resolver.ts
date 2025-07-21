@@ -13,7 +13,7 @@ export const userResolvers = {
             });
         },
     },
- 
+
     User: {
         products: (parent: any) => {
             return prisma.product.findMany({

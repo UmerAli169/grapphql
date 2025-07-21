@@ -17,6 +17,7 @@ export const context = async ({ req }: { req: any }) => {
       user = await prisma.user.findUnique({
         where: { id: decoded.userId },
       });
+
     } catch (err) {
       console.error("Token verification failed:", err);
     }

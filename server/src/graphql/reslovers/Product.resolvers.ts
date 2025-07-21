@@ -12,7 +12,8 @@ export const productResolvers = {
 
   Mutation: {
     createProduct: async (_: any, { input }: any, { user }: any) => {
-      if (!user) { 
+      console.log(input, 'input', user, 'user')
+      if (!user) {
         throw new Error("Unauthorized: You must be logged in to create a product.");
       }
 
@@ -27,7 +28,7 @@ export const productResolvers = {
 
   Product: {
     user: (parent: any) => {
-      console.log(parent,'parent')
+      console.log(parent, 'parent')
       return prisma.user.findUnique({
         where: { id: parent.userId },
       });

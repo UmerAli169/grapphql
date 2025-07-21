@@ -24,45 +24,6 @@ enum Size{
   L
   Xl
 }
-// model User {
-//   id             String     @id @default(uuid())
-//   firstName      String?    
-//   lastName       String?    
-//   email          String     @unique
-//   password       String
-//   googleProvided String?   
-//   provider       String?     @default("credentials")
-//   products       Product[] @relation(fields: [productId],references: [id])
-//   createdAt      DateTime   @default(now())
-//   updatedAt      DateTime   @updatedAt
-// }
-
-
-
-// model Product {
-//  id String @id @default(uuid())
-//  productName String
-//  describtion String
-//  price String
-//  rating Float
-//  recommendFor RecommendFor
-//  size Size
-//  wishlist String
-//  userId String
-//  productId String
-//  imgageKeys String[]
-//  reviews Reviews[]
-// }
-
-// model Reviews{
-// id String @id @default(uuid())
-// productId String
-// userId String
-// comments String
-// rating String
-// createdat  DateTime @default(now())
-
-// }
 
 
 
@@ -75,7 +36,7 @@ model User {
   googleProvided String?   
   provider       String     @default("credentials")
   products       Product[]  @relation("UserProducts")
-  reviews        Reviews[]  @relation("UserReviews")  // ✅ <-- Add this line
+  reviews        Reviews[]  @relation("UserReviews") 
   createdAt      DateTime   @default(now())
   updatedAt      DateTime   @updatedAt
 }
@@ -88,21 +49,24 @@ model Product {
   rating        Float
   recommendFor  RecommendFor
   size          Size
-  wishlist      String
+  isWishlist    Boolean     @default(false)
   userId        String
-  user          User       @relation(fields: [userId], references: [id], name: "UserProducts")
+  user          User        @relation(fields: [userId], references: [id], name: "UserProducts")
   imageKeys     String[]
-  reviews       Reviews[]
+  reviews       Reviews[]   @relation("ProductReviews")
+   createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 model Reviews {
   id         String   @id @default(uuid())
+  comment    String
+  rating     Float
   productId  String
   userId     String
-  comment    String
-  rating     String
-  createdAt  DateTime @default(now())
-
-  product    Product  @relation(fields: [productId], references: [id])
+  product    Product  @relation(fields: [productId], references: [id], name: "ProductReviews")
   user       User     @relation(fields: [userId], references: [id], name: "UserReviews")
+  createdAt  DateTime @default(now())
+    updatedAt      DateTime   @updatedAt
+
 }

@@ -25,6 +25,7 @@ exports.productResolvers = {
     },
     Mutation: {
         createProduct: (_1, _a, _b) => __awaiter(void 0, [_1, _a, _b], void 0, function* (_, { input }, { user }) {
+            console.log(input, 'input', user, 'user');
             if (!user) {
                 throw new Error("Unauthorized: You must be logged in to create a product.");
             }

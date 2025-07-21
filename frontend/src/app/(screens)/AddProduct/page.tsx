@@ -7,11 +7,11 @@ import {
   DELETE_PRODUCT,
 } from "@/lib/graphql/queries";
 
-type CategoryEnum = "ELECTRONICS" | "CLOTHING" | "BEAUTY"; 
+type CategoryEnum = "ELECTRONICS" | "CLOTHING" | "BEAUTY";
 
 export default function ProductManagement() {
   const [productData, setProductData] = useState({
-    productName: "", 
+    productName: "",
     productPrice: "",
     productDescription: "",
     category: "" as CategoryEnum | "",
@@ -107,7 +107,7 @@ export default function ProductManagement() {
       {notification && (
         <div
           className={`p-3 mb-4 rounded-md ${
-            notification.type === "success" 
+            notification.type === "success"
               ? "bg-green-100 text-green-800"
               : "bg-red-100 text-red-800"
           }`}
