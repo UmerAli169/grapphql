@@ -16,7 +16,7 @@ exports.productTypeDefs = (0, graphql_tag_1.gql) `
     recommendedFor: String
     title: String
     createdAt: String
-    updatedAt: String
+    updatedAt: String 
     user: User!
   }
 

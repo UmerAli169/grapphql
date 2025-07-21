@@ -13,5 +13,5 @@ exports.userTypeDefs = (0, graphql_tag_1.gql) `
 
   type Query {
     me: User
-  }
+  } 
 `;

@@ -35,6 +35,7 @@ exports.productResolvers = {
     },
     Product: {
         user: (parent) => {
+            console.log(parent, 'parent');
             return db_1.default.user.findUnique({
                 where: { id: parent.userId },
             });

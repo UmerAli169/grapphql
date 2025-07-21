@@ -11,5 +11,5 @@ export const userTypeDefs = gql`
 
   type Query {
     me: User
-  }
+  } 
 `;
