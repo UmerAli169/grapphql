@@ -49,7 +49,9 @@ export default function RootLayout({
         <ApolloWrapper>
           <ToastProvider />
           <Header />
-          <main className="flex-grow">{children}</main>
+          <main className="flex-grow">
+            {children}
+            </main>
           <Footer />
         </ApolloWrapper>
       </body>

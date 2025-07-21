@@ -70,7 +70,7 @@ const ProductSection: React.FC<ProductSectionProps> = ({
   return (
     <Wrapper>
       <div className="flex flex-col items-center justify-center w-full lg:pt-[80px] pt-[71px] pb-[30px] relative">
-        {products.length === 0 ? (
+        {products?.length === 0 ? (
           <p className="text-gray-500 mt-4">No products available.</p>
         ) : (
           <>
@@ -81,7 +81,7 @@ const ProductSection: React.FC<ProductSectionProps> = ({
                   alt="Left Flower"
                 />
                 <div className="lg:text-[24px] text-[20px] text-[#383838] font-bold">
-                  {[...new Set(products.map((item:any) => item.tittle))].map(
+                  {[...new Set(products?.map((item:any) => item.tittle))].map(
                     (title, index) => (
                       <p key={`${title}-${index}`}>{title}</p>
                     )
@@ -136,7 +136,7 @@ const ProductSection: React.FC<ProductSectionProps> = ({
                   disabledClass: "swiper-button-disabled",
                 }}
               >
-                {products.map((product, index) => (
+                {products?.map((product, index) => (
                   <SwiperSlide
                     key={`${product._id}-${index}`}
                     style={{ maxWidth: `${cardWidth}px`, width: "100%" }}

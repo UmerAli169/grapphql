@@ -1,3 +1,4 @@
+"use client"
 import axios from "axios";
 import toast from "react-hot-toast";
 
@@ -172,7 +173,7 @@ export const addToCart = async (productId: string, quantity: number) => {
 export const fetchCart = async () => {
   try {
     const response = await api.get("/api/products/fetchCart");
-    return response.data;
+    return response?.data;
   } catch (error) {
     console.error("Error fetching cart:", error);
     console.log(error);

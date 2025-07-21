@@ -44,7 +44,7 @@ export const useProductStore = create<ProductState>((set) => ({
   fetchProducts: async () => {
     try { 
       const response = await getAllProducts();
-      const formattedProducts: Product[] = response.map((product: any) => ({
+      const formattedProducts: Product[] = response?.map((product: any) => ({
         _id: product._id,
         tittle: product.tittle,
         name: product.name,
@@ -65,17 +65,17 @@ export const useProductStore = create<ProductState>((set) => ({
 
       set({
         products: formattedProducts,
-        bestSellers: formattedProducts.filter(
+        bestSellers: formattedProducts?.filter(
           (p) => p.tittle === "Best Sellers"
         ),
-        newArrivals: formattedProducts.filter(
+        newArrivals: formattedProducts?.filter(
           (p) => p.tittle === "New Arrivals"
         ),
-        productdetails: formattedProducts.filter(
+        productdetails: formattedProducts?.filter(
           (p) => p.tittle === "Recently Viewed Products"
         ),
-        blogs: formattedProducts.filter((p) => p.tittle === "On the Blog"),
-        likeproduct: formattedProducts.filter(
+        blogs: formattedProducts?.filter((p) => p.tittle === "On the Blog"),
+        likeproduct: formattedProducts?.filter(
           (p) => p.tittle === "You May Also Like"
         ),
       });

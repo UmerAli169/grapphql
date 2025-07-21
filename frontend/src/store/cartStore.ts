@@ -30,7 +30,7 @@ export const useCartStore = create<CartState>((set, get) => ({
   fetchCart: async () => {
     try {
       const cartData = await fetchCart();
-      set({ cart: cartData.cart });
+      set({ cart: cartData?.cart });
     } catch (error) {
       console.error("Error fetching cart:", error);
     }

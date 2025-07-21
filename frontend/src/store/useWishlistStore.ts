@@ -21,7 +21,7 @@ export const useWishlistStore = create<WishlistState>((set, get) => ({
     try {
       const fetchedWishlist: any = await getWishlist();
       set({
-        wishlist: Array.isArray(fetchedWishlist.products)
+        wishlist: Array.isArray(fetchedWishlist?.products)
           ? fetchedWishlist.products
           : [],
       });

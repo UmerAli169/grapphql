@@ -56,7 +56,7 @@ const Header = () => {
     }
   };
 
-  const searchResults = products.filter((product) =>
+  const searchResults = products?.filter((product) =>
     product.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
   return (

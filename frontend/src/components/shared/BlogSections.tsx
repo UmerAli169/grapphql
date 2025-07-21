@@ -93,7 +93,7 @@ const ProductSection: React.FC<ProductSectionProps> = ({
           </Link>
         </div>
 
-        {products.length === 0 ? (
+        {products?.length === 0 ? (
           <p className="text-gray-500 mt-4">No products available.</p>
         ) : (
           <>
@@ -133,7 +133,7 @@ const ProductSection: React.FC<ProductSectionProps> = ({
                   disabledClass: "swiper-button-disabled",
                 }}
               >
-                {products.map((product, index) => (
+                {products?.map((product, index) => (
                   <SwiperSlide
                     key={`${product._id}-${index}`}
                     style={{ maxWidth: `${cardWidth}px`, width: "100%" }}
