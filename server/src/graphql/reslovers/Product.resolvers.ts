@@ -2,8 +2,13 @@ import prisma from '../../lib/db';
 
 export const productResolvers = {
   Query: {
-    getAllProducts: async () => {
+    getAllProducts: async (_: any, __: any, { user }: any) => {
+      if (!user) {
+        throw new Error("Unauthorized: You must be logged in to view products.");
+      }
+
       return await prisma.product.findMany({
+        where: { userId: user.id },
         include: { user: true },
         orderBy: { createdAt: 'desc' },
       });
@@ -12,7 +17,6 @@ export const productResolvers = {
 
   Mutation: {
     createProduct: async (_: any, { input }: any, { user }: any) => {
-      console.log(input, 'input', user, 'user')
       if (!user) {
         throw new Error("Unauthorized: You must be logged in to create a product.");
       }
@@ -20,7 +24,7 @@ export const productResolvers = {
       return await prisma.product.create({
         data: {
           ...input,
-          user: { connect: { id: user.id } },
+          userId: user.id,
         },
       });
     },
@@ -28,7 +32,6 @@ export const productResolvers = {
 
   Product: {
     user: (parent: any) => {
-      console.log(parent, 'parent')
       return prisma.user.findUnique({
         where: { id: parent.userId },
       });

@@ -6,16 +6,17 @@ const prisma = new PrismaClient();
 interface DecodedToken {
   userId: any;
 }
-
-export const context = async ({ req }: { req: any }) => {
+ 
+export const context = async ({ req }: { req: any }) => { 
   let token = req.cookies.token
   let user = null;
 
   if (token) {
     try {
-      const decoded = jwt.verify(token, "umeralikhan") as DecodedToken;
+      const decoded:any = jwt.verify(token, "umeralikhan") as DecodedToken;
+
       user = await prisma.user.findUnique({
-        where: { id: decoded.userId },
+        where: { id: decoded?.id },
       });
 
     } catch (err) {

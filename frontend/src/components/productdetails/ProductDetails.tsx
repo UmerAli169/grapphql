@@ -132,8 +132,8 @@ const ProductDetails = ({ productInfo }: ProductProps) => {
                 className="w-[16px] h-[16px]"
               />
             ))}
-            <span className="lg:text-[14px] ml-[8px] text-[12px] font-medium font-[Montserrat] font-normal text-[#697586] lg:leading-[22px] leading-[20px]">
-              {Array.isArray(product.reviews) ? product.reviews.length : 0}{" "}
+            <span className="lg:text-[14px] ml-[8px] text-[12px] font-medium font-[Montserrat]  text-[#697586] lg:leading-[22px] leading-[20px]">
+              {Array.isArray(product.reviews) ? product.reviews.length : 0}{" "} 
               reviews
             </span>
           </div>
@@ -144,13 +144,13 @@ const ProductDetails = ({ productInfo }: ProductProps) => {
             <p>{product.description}</p>
             <p>Size: {product.size?.join(", ") || "N/A"}</p>
             <div className="flex flex-col gap-[6px]">
-              <div className="font-[14px] leading-[20px] font-medium text-[#383838]">
+              <div className=" leading-[20px] font-medium text-[#383838]">
                 Recommended For
               </div>
-              <span className="flex flex-col font-[14px] leading-[20px] font-normal text-[#697586] font-[Montserrat]">
-                {product.recommendedFor}
+              <span className="flex flex-col font-[14px] leading-[20px]  text-[#697586] font-[Montserrat]">
+                {product.recommendFor}
               </span>
-            </div>
+            </div>  
           </div>
           <div className="flex items-center gap-[10px]">
             <Button

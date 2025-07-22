@@ -16,8 +16,12 @@ exports.productResolvers = void 0;
 const db_1 = __importDefault(require("../../lib/db"));
 exports.productResolvers = {
     Query: {
-        getAllProducts: () => __awaiter(void 0, void 0, void 0, function* () {
+        getAllProducts: (_1, __1, _a) => __awaiter(void 0, [_1, __1, _a], void 0, function* (_, __, { user }) {
+            if (!user) {
+                throw new Error("Unauthorized: You must be logged in to view products.");
+            }
             return yield db_1.default.product.findMany({
+                where: { userId: user.id },
                 include: { user: true },
                 orderBy: { createdAt: 'desc' },
             });
@@ -25,18 +29,16 @@ exports.productResolvers = {
     },
     Mutation: {
         createProduct: (_1, _a, _b) => __awaiter(void 0, [_1, _a, _b], void 0, function* (_, { input }, { user }) {
-            console.log(input, 'input', user, 'user');
             if (!user) {
                 throw new Error("Unauthorized: You must be logged in to create a product.");
             }
             return yield db_1.default.product.create({
-                data: Object.assign(Object.assign({}, input), { user: { connect: { id: user.id } } }),
+                data: Object.assign(Object.assign({}, input), { userId: user.id }),
             });
         }),
     },
     Product: {
         user: (parent) => {
-            console.log(parent, 'parent');
             return db_1.default.user.findUnique({
                 where: { id: parent.userId },
             });

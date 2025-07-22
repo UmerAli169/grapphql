@@ -2,16 +2,16 @@ import { gql } from 'graphql-tag';
 
 export const productTypeDefs = gql`
   type Product {
-    id: Int!
+    id: String!
     productName: String
-    productPrice: Float
-    productDescription: String
+    price: Float
+    description: String
     discount: Float
     category: String
     subCategory: String
-    images: [String!]
+    imageKeys: [String!]
     size: String
-    recommendedFor: String
+    recommendFor: String
     title: String
     createdAt: String
     updatedAt: String 
@@ -20,14 +20,14 @@ export const productTypeDefs = gql`
 
   input CreateProductInput {
     productName: String
-    productPrice: Float
-    productDescription: String
+    price: Float
+    description: String
     discount: Float
     category: String
     subCategory: String
-    images: [String]
+    imageKeys: [String]
     size: String
-    recommendedFor: String
+    recommendFor: String
     title: String
   }
 

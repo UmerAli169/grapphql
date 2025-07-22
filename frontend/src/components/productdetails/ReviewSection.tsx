@@ -141,9 +141,9 @@ const ReviewSection = ({ productId }: { productId: string }) => {
                 <p className="font-normal font-[14px] leading-[22px] text-[#697586] ">
                   {review.text}
                 </p>
-                {review.images?.length > 0 && (
+                {review.imageKeys?.length > 0 && (
                   <div className="flex gap-2 mt-2 ">
-                    {review.images.map((img: string, i: number) => (
+                    {review.imageKeys.map((img: string, i: number) => (
                       <img
                         key={i}
                         src={img}

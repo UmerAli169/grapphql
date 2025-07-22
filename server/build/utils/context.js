@@ -23,7 +23,7 @@ const context = (_a) => __awaiter(void 0, [_a], void 0, function* ({ req }) {
         try {
             const decoded = jsonwebtoken_1.default.verify(token, "umeralikhan");
             user = yield prisma.user.findUnique({
-                where: { id: decoded.userId },
+                where: { id: decoded === null || decoded === void 0 ? void 0 : decoded.id },
             });
         }
         catch (err) {

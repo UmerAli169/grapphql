@@ -12,61 +12,63 @@ enum Category {
   ELECTRONICS
   BEAUTY
 }
+
 enum RecommendFor {
- MEN 
- WOMEN
- KIDS
+  MEN
+  WOMEN
+  KIDS
 }
 
-enum Size{
+enum Size {
   S
   M
   L
-  Xl
+  XL
 }
 
-
-
 model User {
-  id             String     @id @default(uuid())
-  firstName      String?    
-  lastName       String?    
-  email          String     @unique
+  id             String    @id @default(uuid())
+  firstName      String?
+  lastName       String?
+  email          String    @unique
   password       String
-  googleProvided String?   
-  provider       String     @default("credentials")
-  products       Product[]  @relation("UserProducts")
-  reviews        Reviews[]  @relation("UserReviews") 
-  createdAt      DateTime   @default(now())
-  updatedAt      DateTime   @updatedAt
+  googleProvided String?
+  provider       String    @default("credentials")
+  products       Product[] @relation("UserProducts")
+  reviews        Reviews[] @relation("UserReviews")
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
 }
 
 model Product {
-  id            String     @id @default(uuid())
-  productName   String
-  description   String
-  price         String
-  rating        Float
-  recommendFor  RecommendFor
-  size          Size
-  isWishlist    Boolean     @default(false)
-  userId        String
-  user          User        @relation(fields: [userId], references: [id], name: "UserProducts")
-  imageKeys     String[]
-  reviews       Reviews[]   @relation("ProductReviews")
-   createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id           String       @id @default(uuid())
+  productName  String
+  description  String
+  price        Float
+  discount     Float?
+  category     Category
+  subCategory  String?
+  rating       Float?
+  title String
+  recommendFor RecommendFor
+  size         Size
+  isWishlist   Boolean?     @default(false)
+  imageKeys    String[]
+  userId       String
+  user         User         @relation("UserProducts", fields: [userId], references: [id])
+  reviews      Reviews[]    @relation("ProductReviews")
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
 }
 
 model Reviews {
-  id         String   @id @default(uuid())
-  comment    String
-  rating     Float
-  productId  String
-  userId     String
-  product    Product  @relation(fields: [productId], references: [id], name: "ProductReviews")
-  user       User     @relation(fields: [userId], references: [id], name: "UserReviews")
-  createdAt  DateTime @default(now())
-    updatedAt      DateTime   @updatedAt
-
+  id        String   @id @default(uuid())
+  comment   String?
+  rating    Float?
+  productId String
+  userId    String
+  product   Product  @relation("ProductReviews", fields: [productId], references: [id])
+  user      User     @relation("UserReviews", fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

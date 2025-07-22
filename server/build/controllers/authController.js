@@ -14,7 +14,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.loginUser = exports.registerUser = void 0;
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
-const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const db_1 = __importDefault(require("../lib/db"));
 const generatetoken_1 = require("../utils/generatetoken");
 const registerUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -63,9 +62,7 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             res.status(400).json({ message: "Invalid credentials" });
             return;
         }
-        const token = jsonwebtoken_1.default.sign({ userId: user.id }, "umeralikhan", {
-            expiresIn: "7d",
-        });
+        const token = (0, generatetoken_1.generateToken)(user.id);
         res
             .cookie("token", token, {
             httpOnly: true,

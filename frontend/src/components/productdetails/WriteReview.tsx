@@ -46,7 +46,7 @@ export const ReviewModal = ({
 
       // Only send the first 5 selected photos
       selectedPhotos.slice(0, 5).forEach((file) => {
-        formData.append("images", file);
+        formData.append("imageKeys", file);
       });
 
       await createReview(formData);

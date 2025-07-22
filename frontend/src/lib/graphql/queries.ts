@@ -5,14 +5,14 @@ export const GET_ALL_PRODUCTS = gql`
     getAllProducts {
       id
       productName
-      productPrice
-      productDescription
+      price
+      description
       discount
       category
       subCategory
-      images
+      imageKeys
       size
-      recommendedFor
+      recommendFor
       title
     }
   }
@@ -23,11 +23,11 @@ export const CREATE_PRODUCT = gql`
     createProduct(input: $input) {
       id
       productName
-      productPrice
-      productDescription
+      price
+      description
       category
       subCategory
-      images
+      imageKeys
     }
   }
 `;

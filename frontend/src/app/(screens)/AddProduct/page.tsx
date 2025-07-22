@@ -8,18 +8,20 @@ import {
 } from "@/lib/graphql/queries";
 
 type CategoryEnum = "ELECTRONICS" | "CLOTHING" | "BEAUTY";
+type recommendFor = "MEN" | "WOMEN" | "KIDS";
+type Size = "S" | "M" | "L" | "XL";
 
 export default function ProductManagement() {
   const [productData, setProductData] = useState({
     productName: "",
-    productPrice: "",
-    productDescription: "",
+    price: "",
+    description: "",
     category: "" as CategoryEnum | "",
     subCategory: "",
     discount: "",
-    images: [],
-    size: "",
-    recommendedFor: "",
+    imageKeys: [],
+    size: "" as Size | "",
+    recommendFor: "" as recommendFor | "",
     title: "",
   });
 
@@ -55,9 +57,9 @@ export default function ProductManagement() {
         variables: {
           input: {
             ...productData,
-            productPrice: parseFloat(productData.productPrice),
+            price: parseFloat(productData.price),
             discount: parseFloat(productData.discount),
-            images: imagePreviews,
+            imageKeys: imagePreviews,
           },
         },
       });
@@ -68,14 +70,14 @@ export default function ProductManagement() {
       refetch();
       setProductData({
         productName: "",
-        productPrice: "",
-        productDescription: "",
+        price: "",
+        description: "",
         category: "",
         subCategory: "",
         discount: "",
-        images: [],
+        imageKeys: [],
         size: "",
-        recommendedFor: "",
+        recommendFor: "",
         title: "",
       });
       setImagePreviews([]);
@@ -128,10 +130,10 @@ export default function ProductManagement() {
               onChange={handleInputChange}
             />
             <Input
-              name="productPrice"
+              name="price"
               type="number"
               label="Price"
-              value={productData.productPrice}
+              value={productData.price}
               onChange={handleInputChange}
             />
             <Input
@@ -156,17 +158,19 @@ export default function ProductManagement() {
               value={productData.subCategory}
               onChange={handleInputChange}
             />
-            <Input
+            <Select
               name="size"
               label="Size"
               value={productData.size}
               onChange={handleInputChange}
+              options={["S" , "M" ,"L" , "XL"]}
             />
-            <Input
-              name="recommendedFor"
+            <Select
+              name="recommendFor"
               label="Recommended For"
-              value={productData.recommendedFor}
+              value={productData.recommendFor}
               onChange={handleInputChange}
+              options={["MEN" , "WOMEN" , "KIDS"]}
             />
             <Input
               name="title"
@@ -181,8 +185,8 @@ export default function ProductManagement() {
               Description
             </label>
             <textarea
-              name="productDescription"
-              value={productData.productDescription}
+              name="description"
+              value={productData.description}
               onChange={handleInputChange}
               className="w-full p-2 border rounded"
               rows={3}
@@ -191,7 +195,7 @@ export default function ProductManagement() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-1">Images</label>
+            <label className="block text-sm font-medium mb-1">Image</label>
             <input
               type="file"
               multiple
@@ -238,7 +242,7 @@ export default function ProductManagement() {
               {data?.getAllProducts?.map((product: any) => (
                 <tr key={product.id} className="border-t">
                   <td className="p-2">{product.productName}</td>
-                  <td className="p-2">${product.productPrice}</td>
+                  <td className="p-2">${product.price}</td>
                   <td className="p-2">${product.discount}</td>
                   <td className="p-2">
                     {product.category}/{product.subCategory}

@@ -2,7 +2,7 @@ import Wrapper from "@/app/wrapper";
 import Button from "../shared/Button";
 import Link from "next/link";
 
-const images = [
+const imageKeys = [
   "/imageGallary.png",
   "/imageGallary.png",
   "/imageGallary.png",
@@ -39,7 +39,7 @@ const InstagramGallery = () => {
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-[20px] py-[30px]">
-          {images.map((src, index) => (
+          {imageKeys.map((src, index) => (
             <div key={index} className="relative group overflow-hidden">
               <img
                 src={src}

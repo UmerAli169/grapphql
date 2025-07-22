@@ -5,10 +5,10 @@
   - You are about to drop the column `category` on the `Product` table. All the data in the column will be lost.
   - You are about to drop the column `createdAt` on the `Product` table. All the data in the column will be lost.
   - You are about to drop the column `discount` on the `Product` table. All the data in the column will be lost.
-  - You are about to drop the column `images` on the `Product` table. All the data in the column will be lost.
+  - You are about to drop the column `imageKeys` on the `Product` table. All the data in the column will be lost.
   - You are about to drop the column `productDescription` on the `Product` table. All the data in the column will be lost.
   - You are about to drop the column `productPrice` on the `Product` table. All the data in the column will be lost.
-  - You are about to drop the column `recommendedFor` on the `Product` table. All the data in the column will be lost.
+  - You are about to drop the column `recommendFor` on the `Product` table. All the data in the column will be lost.
   - You are about to drop the column `subCategory` on the `Product` table. All the data in the column will be lost.
   - You are about to drop the column `title` on the `Product` table. All the data in the column will be lost.
   - You are about to drop the column `updatedAt` on the `Product` table. All the data in the column will be lost.
@@ -41,10 +41,10 @@ ALTER TABLE "Product" DROP CONSTRAINT "Product_pkey",
 DROP COLUMN "category",
 DROP COLUMN "createdAt",
 DROP COLUMN "discount",
-DROP COLUMN "images",
+DROP COLUMN "imageKeys",
 DROP COLUMN "productDescription",
 DROP COLUMN "productPrice",
-DROP COLUMN "recommendedFor",
+DROP COLUMN "recommendFor",
 DROP COLUMN "subCategory",
 DROP COLUMN "title",
 DROP COLUMN "updatedAt",

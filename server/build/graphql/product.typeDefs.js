@@ -11,9 +11,9 @@ exports.productTypeDefs = (0, graphql_tag_1.gql) `
     discount: Float!
     category: String!
     subCategory: String
-    images: [String!]!
+    imageKeys: [String!]!
     size: String!
-    recommendedFor: String
+    recommendFor: String
     title: String!
     createdAt: String!
     updatedAt: String!
@@ -27,9 +27,9 @@ exports.productTypeDefs = (0, graphql_tag_1.gql) `
     discount: Float!
     category: String!
     subCategory: String
-    images: [String!]!
+    imageKeys: [String!]!
     size: String!
-    recommendedFor: String
+    recommendFor: String
     title: String!
   }
 

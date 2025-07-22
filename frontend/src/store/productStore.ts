@@ -16,7 +16,7 @@ interface Product {
   rating: number;
   reviews: number;
   size: string[];
-  recommendedFor: string;
+  recommendFor: string;
   blog: string;
 }
 
@@ -59,7 +59,7 @@ export const useProductStore = create<ProductState>((set) => ({
         rating: product.rating || 0,
         reviews: product.reviews || 0,
         size: product.size || [],
-        recommendedFor: product.recommendedFor || "",
+        recommendFor: product.recommendFor || "",
         blog: product.blog || "",
       }));
 
