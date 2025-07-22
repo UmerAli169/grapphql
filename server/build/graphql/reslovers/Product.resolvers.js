@@ -23,7 +23,7 @@ exports.productResolvers = {
             return yield db_1.default.product.findMany({
                 where: { userId: user.id },
                 include: { user: true },
-                orderBy: { createdAt: 'desc' },
+                orderBy: { createdAt: "desc" },
             });
         }),
     },
@@ -36,12 +36,42 @@ exports.productResolvers = {
                 data: Object.assign(Object.assign({}, input), { userId: user.id }),
             });
         }),
+        updateProduct: (_1, _a, _b) => __awaiter(void 0, [_1, _a, _b], void 0, function* (_, { id, input }, { user }) {
+            if (!user) {
+                throw new Error("Unauthorized: You must be logged in.");
+            }
+            const existingProduct = yield db_1.default.product.findUnique({
+                where: { id },
+            });
+            if (!existingProduct || existingProduct.userId !== user.id) {
+                throw new Error("Not allowed to update this product.");
+            }
+            return yield db_1.default.product.update({
+                where: { id },
+                data: input,
+            });
+        }),
+        deleteProduct: (_1, _a, _b) => __awaiter(void 0, [_1, _a, _b], void 0, function* (_, { id }, { user }) {
+            if (!user) {
+                throw new Error("Unauthorized: You must be logged in.");
+            }
+            const existingProduct = yield db_1.default.product.findUnique({
+                where: { id },
+            });
+            if (!existingProduct || existingProduct.userId !== user.id) {
+                throw new Error("Not allowed to delete this product.");
+            }
+            yield db_1.default.product.delete({
+                where: { id },
+            });
+            return { success: true, message: "Product deleted successfully." };
+        }),
     },
     Product: {
-        user: (parent) => {
-            return db_1.default.user.findUnique({
+        user: (parent) => __awaiter(void 0, void 0, void 0, function* () {
+            return yield db_1.default.user.findUnique({
                 where: { id: parent.userId },
             });
-        },
+        }),
     },
 };

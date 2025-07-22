@@ -1,14 +1,14 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const GET_ALL_PRODUCTS = gql`
-  query GetAllProducts { 
+  query GetAllProducts {
     getAllProducts {
       id
       productName
       price
       description
       discount
-      category
+      category 
       subCategory
       imageKeys
       size
@@ -31,11 +31,28 @@ export const CREATE_PRODUCT = gql`
     }
   }
 `;
+export const UPDATE_PRODUCT = gql`
+  mutation UpdateProduct($id: ID!, $input: UpdateProductInput!) {
+    updateProduct(id: $id, input: $input) {
+      id
+      productName
+      price
+      description
+      category
+      subCategory
+      imageKeys
+      size
+      recommendFor
+      title
+    }
+  }
+`;
 
 export const DELETE_PRODUCT = gql`
   mutation DeleteProduct($id: ID!) {
     deleteProduct(id: $id) {
-      id
+      success
+      message
     }
   }
 `;

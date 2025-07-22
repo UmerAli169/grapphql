@@ -5,10 +5,11 @@ import {
   CREATE_PRODUCT,
   GET_ALL_PRODUCTS,
   DELETE_PRODUCT,
+  UPDATE_PRODUCT,
 } from "@/lib/graphql/queries";
 
 type CategoryEnum = "ELECTRONICS" | "CLOTHING" | "BEAUTY";
-type recommendFor = "MEN" | "WOMEN" | "KIDS";
+type RecommendFor = "MEN" | "WOMEN" | "KIDS";
 type Size = "S" | "M" | "L" | "XL";
 
 export default function ProductManagement() {
@@ -19,12 +20,13 @@ export default function ProductManagement() {
     category: "" as CategoryEnum | "",
     subCategory: "",
     discount: "",
-    imageKeys: [],
+    imageKeys: [] as string[],
     size: "" as Size | "",
-    recommendFor: "" as recommendFor | "",
+    recommendFor: "" as RecommendFor | "",
     title: "",
   });
 
+  const [editingProductId, setEditingProductId] = useState<string | null>(null);
   const [imagePreviews, setImagePreviews] = useState<string[]>([]);
   const [notification, setNotification] = useState<{
     type: string;
@@ -34,39 +36,56 @@ export default function ProductManagement() {
   const { loading, error, data, refetch } = useQuery(GET_ALL_PRODUCTS);
   const [createProduct] = useMutation(CREATE_PRODUCT);
   const [deleteProduct] = useMutation(DELETE_PRODUCT);
-
-  const handleInputChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
-  ) => {
-    const { name, value } = e.target;
-    setProductData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files || []);
-    const previews = files.map((file) => URL.createObjectURL(file));
-    setImagePreviews([...imagePreviews, ...previews]);
-  };
+  const [updateProduct] = useMutation(UPDATE_PRODUCT);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      await createProduct({
-        variables: {
-          input: {
-            ...productData,
-            price: parseFloat(productData.price),
-            discount: parseFloat(productData.discount),
-            imageKeys: imagePreviews,
-          },
-        },
-      });
+    const price = parseFloat(productData.price);
+    const discount = parseFloat(productData.discount);
+
+    if (isNaN(price) || isNaN(discount)) {
       setNotification({
-        type: "success",
-        message: "Product created successfully!",
+        type: "error",
+        message: "Price and Discount must be numbers.",
       });
+      return;
+    }
+
+    try {
+      if (editingProductId) {
+        const { __typename, id, ...cleanInput } = productData as any;
+
+        await updateProduct({
+          variables: {
+            id: editingProductId,
+            input: {
+              ...cleanInput,
+              price,
+              discount,
+            },
+          },
+        });
+
+        setNotification({
+          type: "success",
+          message: "Product updated successfully!",
+        });
+      } else {
+        await createProduct({
+          variables: {
+            input: {
+              ...productData,
+              price,
+              discount,
+            },
+          },
+        });
+        setNotification({
+          type: "success",
+          message: "Product created successfully!",
+        });
+      }
+
       refetch();
       setProductData({
         productName: "",
@@ -81,20 +100,39 @@ export default function ProductManagement() {
         title: "",
       });
       setImagePreviews([]);
+      setEditingProductId(null);
     } catch (err: any) {
       setNotification({ type: "error", message: err.message });
     }
   };
 
-  const handleDelete = async (id: number) => {
-    if (confirm("Are you sure you want to delete this product?")) {
-      try {
-        await deleteProduct({ variables: { id } });
-        setNotification({ type: "success", message: "Product deleted!" });
-        refetch();
-      } catch (err: any) {
-        setNotification({ type: "error", message: err.message });
-      }
+  const handleInputChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    const { name, value } = e.target;
+    setProductData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files || []);
+    const previews = files.map((file) => URL.createObjectURL(file));
+    const keys = files.map((file) => file.name);
+    setImagePreviews([...imagePreviews, ...previews]);
+    setProductData((prev) => ({
+      ...prev,
+      imageKeys: [...prev.imageKeys, ...keys],
+    }));
+  };
+
+  const handleDelete = async (id: string) => {
+    try {
+      await deleteProduct({ variables: { id } });
+      setNotification({ type: "success", message: "Product deleted!" });
+      refetch();
+    } catch (err: any) {
+      setNotification({ type: "error", message: err.message });
     }
   };
 
@@ -118,9 +156,10 @@ export default function ProductManagement() {
         </div>
       )}
 
-      {/* Add Product Form */}
       <div className="bg-white p-6 rounded-lg shadow-md mb-8">
-        <h2 className="text-xl font-semibold mb-4">Add New Product</h2>
+        <h2 className="text-xl font-semibold mb-4">
+          {editingProductId ? "Edit Product" : "Add New Product"}
+        </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Input
@@ -143,7 +182,6 @@ export default function ProductManagement() {
               value={productData.discount}
               onChange={handleInputChange}
             />
-
             <Select
               name="category"
               label="Category"
@@ -151,7 +189,6 @@ export default function ProductManagement() {
               onChange={handleInputChange}
               options={["ELECTRONICS", "CLOTHING", "BEAUTY"]}
             />
-
             <Input
               name="subCategory"
               label="Sub Category"
@@ -163,14 +200,14 @@ export default function ProductManagement() {
               label="Size"
               value={productData.size}
               onChange={handleInputChange}
-              options={["S" , "M" ,"L" , "XL"]}
+              options={["S", "M", "L", "XL"]}
             />
             <Select
               name="recommendFor"
               label="Recommended For"
               value={productData.recommendFor}
               onChange={handleInputChange}
-              options={["MEN" , "WOMEN" , "KIDS"]}
+              options={["MEN", "WOMEN", "KIDS"]}
             />
             <Input
               name="title"
@@ -195,7 +232,7 @@ export default function ProductManagement() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-1">Image</label>
+            <label className="block text-sm font-medium mb-1">Images</label>
             <input
               type="file"
               multiple
@@ -219,12 +256,11 @@ export default function ProductManagement() {
             type="submit"
             className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
           >
-            Add Product
+            {editingProductId ? "Update Product" : "Add Product"}
           </button>
         </form>
       </div>
 
-      {/* Product List */}
       <div className="bg-white p-6 rounded-lg shadow-md">
         <h2 className="text-xl font-semibold mb-4">Product List</h2>
         <div className="overflow-x-auto">
@@ -245,14 +281,28 @@ export default function ProductManagement() {
                   <td className="p-2">${product.price}</td>
                   <td className="p-2">${product.discount}</td>
                   <td className="p-2">
-                    {product.category}/{product.subCategory}
+                    {product.category} / {product.subCategory}
                   </td>
                   <td className="p-2">
                     <button
                       onClick={() => handleDelete(product.id)}
-                      className="text-red-600 hover:text-red-800"
+                      className="text-red-600 hover:text-red-800 mr-2"
                     >
                       Delete
+                    </button>
+                    <button
+                      onClick={() => {
+                        setEditingProductId(product.id);
+                        setProductData({
+                          ...product,
+                          price: String(product.price),
+                          discount: String(product.discount),
+                        });
+                        setImagePreviews(product.imageKeys || []);
+                      }}
+                      className="text-blue-600 hover:text-blue-800"
+                    >
+                      Edit
                     </button>
                   </td>
                 </tr>

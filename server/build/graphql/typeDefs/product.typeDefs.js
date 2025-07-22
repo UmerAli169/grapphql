@@ -16,7 +16,8 @@ exports.productTypeDefs = (0, graphql_tag_1.gql) `
     recommendFor: String
     title: String
     createdAt: String
-    updatedAt: String 
+    updatedAt: String
+    userId: String!
     user: User!
   }
 
@@ -33,8 +34,28 @@ exports.productTypeDefs = (0, graphql_tag_1.gql) `
     title: String
   }
 
+  input UpdateProductInput {
+    productName: String
+    price: Float
+    description: String
+    discount: Float
+    category: String
+    subCategory: String
+    imageKeys: [String]
+    size: String
+    recommendFor: String
+    title: String
+  }
+
+  type DeleteResponse {
+    success: Boolean!
+    message: String!
+  }
+
   type Mutation {
     createProduct(input: CreateProductInput!): Product!
+    updateProduct(id: ID!, input: UpdateProductInput!): Product
+    deleteProduct(id: ID!): DeleteResponse
   }
 
   type Query {

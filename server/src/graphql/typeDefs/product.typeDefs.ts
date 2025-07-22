@@ -1,4 +1,4 @@
-import { gql } from 'graphql-tag';
+import { gql } from "graphql-tag";
 
 export const productTypeDefs = gql`
   type Product {
@@ -14,7 +14,8 @@ export const productTypeDefs = gql`
     recommendFor: String
     title: String
     createdAt: String
-    updatedAt: String 
+    updatedAt: String
+    userId: String!
     user: User!
   }
 
@@ -31,8 +32,28 @@ export const productTypeDefs = gql`
     title: String
   }
 
+  input UpdateProductInput {
+    productName: String
+    price: Float
+    description: String
+    discount: Float
+    category: String
+    subCategory: String
+    imageKeys: [String]
+    size: String
+    recommendFor: String
+    title: String
+  }
+
+  type DeleteResponse {
+    success: Boolean!
+    message: String!
+  }
+
   type Mutation {
     createProduct(input: CreateProductInput!): Product!
+    updateProduct(id: ID!, input: UpdateProductInput!): Product
+    deleteProduct(id: ID!): DeleteResponse
   }
 
   type Query {

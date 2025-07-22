@@ -1,8 +1,8 @@
-import prisma from '../../lib/db';
+import prisma from "../../lib/db";
 
 export const productResolvers = {
   Query: {
-    getAllProducts: async (_: any, __: any, { user }: any) => {
+    getAllProducts: async (_: unknown, __: unknown, { user }: any) => {
       if (!user) {
         throw new Error("Unauthorized: You must be logged in to view products.");
       }
@@ -10,13 +10,13 @@ export const productResolvers = {
       return await prisma.product.findMany({
         where: { userId: user.id },
         include: { user: true },
-        orderBy: { createdAt: 'desc' },
+        orderBy: { createdAt: "desc" },
       });
     },
   },
 
   Mutation: {
-    createProduct: async (_: any, { input }: any, { user }: any) => {
+    createProduct: async (_: unknown, { input }: any, { user }: any) => {
       if (!user) {
         throw new Error("Unauthorized: You must be logged in to create a product.");
       }
@@ -28,11 +28,50 @@ export const productResolvers = {
         },
       });
     },
+
+    updateProduct: async (_: unknown, { id, input }: any, { user }: any) => {
+      if (!user) {
+        throw new Error("Unauthorized: You must be logged in.");
+      }
+
+      const existingProduct = await prisma.product.findUnique({
+        where: { id },
+      });
+
+      if (!existingProduct || existingProduct.userId !== user.id) {
+        throw new Error("Not allowed to update this product.");
+      }
+
+      return await prisma.product.update({
+        where: { id },
+        data: input,
+      });
+    },
+
+    deleteProduct: async (_: unknown, { id }: any, { user }: any) => {
+      if (!user) {
+        throw new Error("Unauthorized: You must be logged in.");
+      }
+
+      const existingProduct = await prisma.product.findUnique({
+        where: { id },
+      });
+
+      if (!existingProduct || existingProduct.userId !== user.id) {
+        throw new Error("Not allowed to delete this product.");
+      }
+
+      await prisma.product.delete({
+        where: { id },
+      });
+
+      return { success: true, message: "Product deleted successfully." };
+    },
   },
 
   Product: {
-    user: (parent: any) => {
-      return prisma.user.findUnique({
+    user: async (parent: any) => {
+      return await prisma.user.findUnique({
         where: { id: parent.userId },
       });
     },
