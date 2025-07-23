@@ -47,8 +47,17 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
     const { email, password } = req.body;
 
     const user: any = await prisma.user.findUnique({ where: { email } });
+
     if (!user) {
       res.status(400).json({ message: "Invalid credentials" });
+      return;
+    }
+
+    // Check if user signed up via Google
+    if (user.googleId) {
+      res.status(400).json({
+        message: "This email is registered with Google. Please log in using Google.",
+      });
       return;
     }
 
@@ -57,6 +66,7 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
       res.status(400).json({ message: "Invalid credentials" });
       return;
     }
+
     const token = generateToken(user.id);
 
     res
@@ -64,15 +74,16 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
         httpOnly: true,
         secure: false,
         sameSite: "lax",
-        maxAge: 7 * 24 * 60 * 60 * 1000,
+        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
         path: "/",
       })
-
       .json({ message: "Login successful", user, token });
+
   } catch (error) {
     res.status(500).json({ message: "Server error" });
   }
 };
+
 
 // export const recoverPassword = async (
 //     req: Request,

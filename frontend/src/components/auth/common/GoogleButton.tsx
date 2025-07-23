@@ -35,7 +35,7 @@ export const GoogleButton = ({ mode }: GoogleButtonProps) => {
         onSuccess={handleSuccess}
         onError={() => toast.error("Google login failed")}
         useOneTap
-        
+        auto_select // 👈 Auto-login if email is recognized
       />
     </div>
   );

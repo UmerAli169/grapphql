@@ -66,8 +66,14 @@ router.post("/google", async (req, res) => {
     if (!email)
       return res.status(400).json({ error: "Email not provided by Google" });
 
-    let user = await prisma.user.findUnique({ where: { email } });
-
+    let user = await prisma.user.findFirst({
+      where: {
+        OR: [
+          { email }, // Match by email
+          { googleId }, // OR match by googleId
+        ],
+      },
+    });
     if (mode === "register") {
       if (user) {
         return res
@@ -103,17 +109,15 @@ router.post("/google", async (req, res) => {
     const jwtToken = generateToken(user.id);
     const { password, ...safeUser } = user;
     res.cookie("token", jwtToken, {
-  httpOnly: true,
-  secure: true,
-  sameSite: "None" as any, // for cross-site cookies
-  maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
-});
-
+      httpOnly: true,
+      secure: true,
+      sameSite: "None" as any, // for cross-site cookies
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+    });
 
     return res.status(200).json({
       message: safeUser ? "Login successful" : "Registered successfully",
       user,
-     
     });
   } catch (error) {
     console.error("Google auth error:", error);

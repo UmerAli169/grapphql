@@ -63,7 +63,14 @@ router.post("/google", (req, res) => __awaiter(void 0, void 0, void 0, function*
         const { sub: googleId, email, given_name: firstName, family_name: lastName, } = payload;
         if (!email)
             return res.status(400).json({ error: "Email not provided by Google" });
-        let user = yield db_1.default.user.findUnique({ where: { email } });
+        let user = yield db_1.default.user.findFirst({
+            where: {
+                OR: [
+                    { email }, // Match by email
+                    { googleId }, // OR match by googleId
+                ],
+            },
+        });
         if (mode === "register") {
             if (user) {
                 return res
@@ -101,7 +108,7 @@ router.post("/google", (req, res) => __awaiter(void 0, void 0, void 0, function*
             httpOnly: true,
             secure: true,
             sameSite: "None", // for cross-site cookies
-            maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
+            maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
         });
         return res.status(200).json({
             message: safeUser ? "Login successful" : "Registered successfully",

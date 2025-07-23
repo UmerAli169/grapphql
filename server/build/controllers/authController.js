@@ -57,6 +57,13 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             res.status(400).json({ message: "Invalid credentials" });
             return;
         }
+        // Check if user signed up via Google
+        if (user.googleId) {
+            res.status(400).json({
+                message: "This email is registered with Google. Please log in using Google.",
+            });
+            return;
+        }
         const isMatch = yield bcryptjs_1.default.compare(password, user.password);
         if (!isMatch) {
             res.status(400).json({ message: "Invalid credentials" });
@@ -68,7 +75,7 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             httpOnly: true,
             secure: false,
             sameSite: "lax",
-            maxAge: 7 * 24 * 60 * 60 * 1000,
+            maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
             path: "/",
         })
             .json({ message: "Login successful", user, token });
