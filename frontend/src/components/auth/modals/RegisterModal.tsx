@@ -10,7 +10,7 @@ import { register } from "../../../services/internal";
 import Checkbox from "@/components/shared/Checkbox";
 
 interface RegisterModalProps {
-  isOpen: boolean;
+  isOpen: boolean; 
   onClose: () => void;
   onLoginClick: () => void;
 }
@@ -55,7 +55,7 @@ export const RegisterModal = ({ isOpen, onClose, onLoginClick }: RegisterModalPr
         <AuthButton type="submit">Register</AuthButton>
         <Checkbox label="Yes, I want to subscribe to the newsletter now" />
         <OrDivider />
-        <GoogleButton />
+<GoogleButton mode="register" />
         <div className="text-center text-gray-600">
           Already have an account? <button onClick={onLoginClick} className="underline">Login</button>
         </div>

@@ -6,24 +6,19 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ToastProvider from "@/components/notificiton/ToastProvider";
 import ApolloWrapper from "@/components/providers/ApolloWrapper";
-
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import "../globals.css";
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
+const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "600", "700"],
   variable: "--font-poppins",
 });
-
 const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["400", "600", "700"],
@@ -35,7 +30,6 @@ export const metadata: Metadata = {
   description: "Discover trendy collections",
 };
 
-// export default client;
 export default function RootLayout({
   children,
 }: {
@@ -46,14 +40,17 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} ${montserrat.variable} antialiased flex flex-col min-h-screen w-full font-[poppins] bg-[#F9FAFC]`}
       >
-        <ApolloWrapper>
-          <ToastProvider />
-          <Header />
-          <main className="flex-grow">
-            {children}
-            </main>
-          <Footer />
-        </ApolloWrapper>
+        <GoogleOAuthProvider
+          clientId="566898322531-0ka8vs2s22tf7vh7n0gdno9jvt1pas4c.apps.googleusercontent.com"
+          
+        >
+          <ApolloWrapper>
+            <ToastProvider />
+            <Header />
+            <main className="flex-grow">{children}</main>
+            <Footer />
+          </ApolloWrapper>
+        </GoogleOAuthProvider>
       </body>
     </html>
   );

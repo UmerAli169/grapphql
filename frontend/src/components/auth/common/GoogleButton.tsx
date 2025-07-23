@@ -1,15 +1,42 @@
-import { googleLogin } from "@/services/internal"; // Import API function
+import { GoogleLogin } from "@react-oauth/google";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
-export const GoogleButton = () => {
+interface GoogleButtonProps {
+  mode: "login" | "register";
+}
+
+export const GoogleButton = ({ mode }: GoogleButtonProps) => {
+  const router = useRouter();
+
+  const handleSuccess = async (credentialResponse: any) => {
+    try {
+      const { credential } = credentialResponse;
+
+      const res = await axios.post(
+        "http://localhost:5000/api/auth/google",
+        { token: credential, mode },
+        { withCredentials: true } // 👈 for cookies
+      );
+      const { message, user }: any = res.data;
+
+      toast.success(message || `${mode} successful`);
+
+      
+    } catch (error: any) {
+      toast.error(error?.response?.data?.error || `${mode} failed`);
+    }
+  };
+
   return (
-    <button
-      onClick={googleLogin}
-      className="w-full border rounded-[4px] p-[10px] flex items-center justify-center relative"
-    >
-      <img src="/google.svg" alt="Google" className="w-[24px] md:block hidden absolute left-4" />
-      <span className="flex-1 text-center md:text-[16px] text-[14px] text-[#697586] font-normal">
-        Continue with Google
-      </span>
-    </button>
+    <div className="w-full">
+      <GoogleLogin
+        onSuccess={handleSuccess}
+        onError={() => toast.error("Google login failed")}
+        useOneTap
+        
+      />
+    </div>
   );
 };

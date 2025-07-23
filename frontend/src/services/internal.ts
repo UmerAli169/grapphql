@@ -61,13 +61,8 @@ export const resetPassword = async (token: any, password: any) => {
   }
 };
 
-export const googleLogin = async () => {
-  try {
-    window.location.href = "http://localhost:5000/api/auth/google";
-  } catch (error) {
-    console.error("Google login error:", error);
-  }
-};
+
+
 
 export const getUser = async () => {
   try {

@@ -77,7 +77,7 @@ export const LoginModal = ({
         <AuthButton type="submit">Log In</AuthButton>
 
         <OrDivider />
-        <GoogleButton />
+<GoogleButton mode="login" />
       </AuthForm>
 
       <div className="text-center py-5 text-[#697586] font-medium text-[14px] md:text-[16px]">
