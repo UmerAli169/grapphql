@@ -38,30 +38,8 @@ const ProductSection: React.FC<ProductSectionProps> = ({
           <p className="text-gray-500 mt-4">No products available.</p>
         ) : (
           <>
-            <div className="text-center mb-6">
-              <div className="flex gap-[10px] items-center justify-center">
-                <img src="/svgs/Shared/ProductSection/leftflower.svg" alt="Left Flower" />
-                <div className="lg:text-[24px] text-[20px] text-[#383838] font-bold">
-                  {[...new Set(products?.map((item: any) => item.tittle))].map(
-                    (title, index) => (
-                      <p key={`${title}-${index}`}>{title}</p>
-                    )
-                  )}
-                </div>
-                <img src="/svgs/Shared/ProductSection/rightflower.svg" alt="Right Flower" />
-              </div>
-              <Link href="/Catalog">
-                <p className="text-[18px] text-[#697586] font-normal hover:text-[#F5A3B7] cursor-pointer">
-                  See All
-                </p>
-              </Link>
-            </div>
-
             <div className="overflow-x-auto w-full">
-              <div
-                className="flex gap-4 w-fit"
-                style={{ minWidth: "100%" }}
-              >
+              <div className="flex gap-4 w-fit" style={{ minWidth: "100%" }}>
                 {products?.map((product, index) => (
                   <div
                     key={`${product._id}-${index}`}

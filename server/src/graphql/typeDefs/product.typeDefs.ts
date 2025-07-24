@@ -61,6 +61,6 @@ export const productTypeDefs = gql`
 
   type Query {
     getAllProducts: [Product!]!
-    getProductById(id: ID!): Product
+    getProductById(id: ID!): Product!
   }
 `;

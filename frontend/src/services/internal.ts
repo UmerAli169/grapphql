@@ -9,7 +9,9 @@ const api = axios.create({
 });
 // src/api/products.ts
 import { useMutation, useQuery } from "@apollo/client";
-import { GET_ALL_PRODUCTS,GET_PRODUCT_BY_ID } from "@/lib/graphql/queries";
+import { GET_ALL_PRODUCTS,GET_PRODUCT_BY_ID } from "@/lib/graphql/product";
+import { GET_REVIEWS_BY_PRODUCT,CREATE_REVIEW } from "@/lib/graphql/reviews";
+
 import client from "@/lib/apolloClient";
 
 api.interceptors.response.use(
@@ -97,7 +99,6 @@ export const getProductById = async (productId: any) => {
       variables: { id: productId },
       fetchPolicy: "no-cache", 
     });
-    console.log(data, 'data');
     
     return data.getProductById;
   } catch (error) {
@@ -138,24 +139,37 @@ export const removeFromWishlist = async (id: string) => {
 
 
 
-export const createReview = async (formData: any) => {
+export const createReview = async (formData: {
+  comment: string;
+  rating: number;
+  productId: string; 
+}) => {
   try {
-    const response = await api.post("/api/reviews", formData, {
-      headers: { "Content-Type": "multipart/form-data" },
+    
+    const { data } = await client.mutate({
+      mutation: CREATE_REVIEW,
+      variables: { input: formData },
     });
-    toast.success(response.data.message || "Review submitted successfully!");
-    return response.data;
-  } catch (error) {
-    console.log(error);
+console.log(data, "data for review submission");
+    toast.success("Review submitted successfully!");
+    return data.createReview;
+  } catch (error: any) {
+    console.error("GraphQL Error:", error); 
+    toast.error("Failed to submit review");
   }
 };
 
-export const getReviewsByProduct = async (productId: any) => {
+export const getReviewsByProduct = async (productId: string) => {
   try {
-    const response = await api.get(`/api/reviews/${productId}`);
-    return response.data;
+    const { data } = await client.query({
+      query: GET_REVIEWS_BY_PRODUCT,
+      variables: { productId },
+      fetchPolicy: "no-cache", // optional: prevents caching
+    });
+    return data.getReviewsByProduct;
   } catch (error) {
-    console.log(error);
+    console.error("GraphQL Error:", error);
+    return [];
   }
 };
 

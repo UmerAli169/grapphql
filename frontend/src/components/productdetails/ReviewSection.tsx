@@ -7,7 +7,7 @@ import { ReviewModal } from "./WriteReview";
 import { useAuthStore } from "@/store/authStore";
 import Link from "next/link";
 const ReviewSection = ({ productId }: { productId: string }) => {
-  const UserId = useAuthStore((state: any) => state.user.user._id);
+  const UserId = useAuthStore((state: any) => state.user?.id);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [reviews, setReviews] = useState([]);
   useEffect(() => {

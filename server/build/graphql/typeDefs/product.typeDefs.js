@@ -63,6 +63,6 @@ exports.productTypeDefs = (0, graphql_tag_1.gql) `
 
   type Query {
     getAllProducts: [Product!]!
-    getProductById(id: ID!): Product
+    getProductById(id: ID!): Product!
   }
 `;

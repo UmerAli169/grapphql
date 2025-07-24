@@ -4,7 +4,6 @@ export const GET_ALL_PRODUCTS = gql`
   query GetAllProducts {
     getAllProducts {
       id
-      tittle
       productName
       price
       description
@@ -22,7 +21,6 @@ export const GET_PRODUCT_BY_ID = gql`
   query GetProductById($id: ID!) {
     getProductById(id: $id) {
       id
-      tittle
       productName
       price
       description
@@ -44,7 +42,7 @@ export const CREATE_PRODUCT = gql`
   mutation CreateProduct($input: CreateProductInput!) {
     createProduct(input: $input) {
       id
-      tittle
+
       productName
       price
       description

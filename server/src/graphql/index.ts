@@ -4,7 +4,8 @@ import { productTypeDefs } from './typeDefs/product.typeDefs';
 import { productResolvers } from './reslovers/Product.resolvers';
 import { userTypeDefs } from './typeDefs/user.typeDefs';
 import { userResolvers } from './reslovers/User.resolver';
-
-export const typeDefs = mergeTypeDefs([productTypeDefs, userTypeDefs]);
-export const resolvers = mergeResolvers([productResolvers, userResolvers]);
+import { reviewsTypeDefs } from './typeDefs/reviews.typeDefs';
+import { reviewResolvers } from './reslovers/reviews.resolvers';
+export const typeDefs = mergeTypeDefs([productTypeDefs, userTypeDefs, reviewsTypeDefs]);
+export const resolvers = mergeResolvers([productResolvers, userResolvers, reviewResolvers]);
 

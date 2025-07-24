@@ -22,7 +22,6 @@ export const productResolvers = {
         },
       });
 
-      console.log(product, 'product');
 
       return product
     },

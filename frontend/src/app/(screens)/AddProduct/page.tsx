@@ -6,7 +6,7 @@ import {
   GET_ALL_PRODUCTS,
   DELETE_PRODUCT,
   UPDATE_PRODUCT,
-} from "@/lib/graphql/queries";
+} from "@/lib/graphql/product";
 
 type CategoryEnum = "ELECTRONICS" | "CLOTHING" | "BEAUTY";
 type RecommendFor = "MEN" | "WOMEN" | "KIDS";
@@ -15,7 +15,6 @@ type Size = "S" | "M" | "L" | "XL";
 export default function ProductManagement() {
   const [productData, setProductData] = useState({
     productName: "",
-    tittle: "",
     price: "",
     description: "",
     category: "" as CategoryEnum | "",
@@ -90,7 +89,6 @@ export default function ProductManagement() {
       refetch();
       setProductData({
         productName: "",
-        tittle: "",
         price: "",
         description: "",
         category: "",
@@ -170,12 +168,7 @@ export default function ProductManagement() {
               value={productData.productName}
               onChange={handleInputChange}
             />
-            <Input
-              name="tittle"
-              label="Title"
-              value={productData.tittle}
-              onChange={handleInputChange}
-            />
+            
             <Input
               name="price"
               type="number"

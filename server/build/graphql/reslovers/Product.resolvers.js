@@ -32,7 +32,6 @@ exports.productResolvers = {
                     id: args.id,
                 },
             });
-            console.log(product, 'product');
             return product;
         }),
     },

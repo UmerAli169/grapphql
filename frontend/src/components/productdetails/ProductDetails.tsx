@@ -15,7 +15,6 @@ interface ProductProps {
 
 const ProductDetails = ({ productInfo }: ProductProps) => {
   const { product } = useProductStore();
-  console.log(product, "Product Details Page Da`122ta");
 
   // const { wishlist, fetchWishlist, toggleWishlist, isInWishlist }: any =
   //   useWishlistStore();

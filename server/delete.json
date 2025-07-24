@@ -1,0 +1,272 @@
+{
+  "data": {
+    "getAllReviews": [
+      {
+        "rating": 4.8,
+        "productId": "3feaa654-5bde-4afb-9539-0d7209f86e9c",
+        "product": {
+          "id": "3feaa654-5bde-4afb-9539-0d7209f86e9c",
+          "tittle": "",
+          "productName": "Ginger Arnold",
+          "price": 560,
+          "description": "Ullam et et sapiente",
+          "discount": 66,
+          "category": "BEAUTY",
+          "subCategory": "Dolor soluta dolor N",
+          "imageKeys": [
+            "873.jpg"
+          ],
+          "size": "M",
+          "recommendFor": "KIDS",
+          "title": "All Products",
+          "createdAt": "1753356221522",
+          "updatedAt": "1753357190058",
+          "user": {
+            "id": "930f3199-3acc-4337-bc60-df2205e81b9f",
+            "firstName": "Hamza",
+            "lastName": "Ashfaq",
+            "email": "bumeralikhan@gmail.com",
+            "products": [
+              {
+                "id": "009fa112-b180-43de-a5d5-6e20c0af66e7",
+                "tittle": "",
+                "productName": "Serena Hurley",
+                "price": 675,
+                "description": "Velit quam non aliqu",
+                "discount": 13,
+                "category": "BEAUTY",
+                "subCategory": "Voluptate ex aut qui",
+                "imageKeys": [],
+                "size": "S",
+                "recommendFor": "WOMEN",
+                "title": "Aliquam porro sunt d",
+                "createdAt": "1753356524446",
+                "updatedAt": "1753356524446",
+                "userId": "930f3199-3acc-4337-bc60-df2205e81b9f",
+                "user": {
+                  "id": "930f3199-3acc-4337-bc60-df2205e81b9f",
+                  "firstName": "Hamza",
+                  "lastName": "Ashfaq",
+                  "email": "bumeralikhan@gmail.com",
+                  "products": [
+                    {
+                      "id": "009fa112-b180-43de-a5d5-6e20c0af66e7",
+                      "tittle": "",
+                      "productName": "Serena Hurley",
+                      "price": 675,
+                      "description": "Velit quam non aliqu",
+                      "discount": 13,
+                      "category": "BEAUTY",
+                      "subCategory": "Voluptate ex aut qui",
+                      "imageKeys": [],
+                      "size": "S",
+                      "recommendFor": "WOMEN",
+                      "title": "Aliquam porro sunt d",
+                      "createdAt": "1753356524446",
+                      "updatedAt": "1753356524446",
+                      "userId": "930f3199-3acc-4337-bc60-df2205e81b9f"
+                    },
+                    {
+                      "id": "6e076298-86a7-48ee-85fe-ef149006d9cf",
+                      "tittle": "",
+                      "productName": "Genevieve Valencia",
+                      "price": 175,
+                      "description": "Necessitatibus aut v",
+                      "discount": 50,
+                      "category": "BEAUTY",
+                      "subCategory": "Magnam facilis conse",
+                      "imageKeys": [],
+                      "size": "L",
+                      "recommendFor": "MEN",
+                      "title": "Velit enim esse numq",
+                      "createdAt": "1753356528063",
+                      "updatedAt": "1753356528063",
+                      "userId": "930f3199-3acc-4337-bc60-df2205e81b9f"
+                    },
+                    {
+                      "id": "3feaa654-5bde-4afb-9539-0d7209f86e9c",
+                      "tittle": "",
+                      "productName": "Ginger Arnold",
+                      "price": 560,
+                      "description": "Ullam et et sapiente",
+                      "discount": 66,
+                      "category": "BEAUTY",
+                      "subCategory": "Dolor soluta dolor N",
+                      "imageKeys": [
+                        "873.jpg"
+                      ],
+                      "size": "M",
+                      "recommendFor": "KIDS",
+                      "title": "All Products",
+                      "createdAt": "1753356221522",
+                      "updatedAt": "1753357190058",
+                      "userId": "930f3199-3acc-4337-bc60-df2205e81b9f"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "6e076298-86a7-48ee-85fe-ef149006d9cf",
+                "tittle": "",
+                "productName": "Genevieve Valencia",
+                "price": 175,
+                "description": "Necessitatibus aut v",
+                "discount": 50,
+                "category": "BEAUTY",
+                "subCategory": "Magnam facilis conse",
+                "imageKeys": [],
+                "size": "L",
+                "recommendFor": "MEN",
+                "title": "Velit enim esse numq",
+                "createdAt": "1753356528063",
+                "updatedAt": "1753356528063",
+                "userId": "930f3199-3acc-4337-bc60-df2205e81b9f",
+                "user": {
+                  "id": "930f3199-3acc-4337-bc60-df2205e81b9f",
+                  "firstName": "Hamza",
+                  "lastName": "Ashfaq",
+                  "email": "bumeralikhan@gmail.com",
+                  "products": [
+                    {
+                      "id": "009fa112-b180-43de-a5d5-6e20c0af66e7",
+                      "tittle": "",
+                      "productName": "Serena Hurley",
+                      "price": 675,
+                      "description": "Velit quam non aliqu",
+                      "discount": 13,
+                      "category": "BEAUTY",
+                      "subCategory": "Voluptate ex aut qui",
+                      "imageKeys": [],
+                      "size": "S",
+                      "recommendFor": "WOMEN",
+                      "title": "Aliquam porro sunt d",
+                      "createdAt": "1753356524446",
+                      "updatedAt": "1753356524446",
+                      "userId": "930f3199-3acc-4337-bc60-df2205e81b9f"
+                    },
+                    {
+                      "id": "6e076298-86a7-48ee-85fe-ef149006d9cf",
+                      "tittle": "",
+                      "productName": "Genevieve Valencia",
+                      "price": 175,
+                      "description": "Necessitatibus aut v",
+                      "discount": 50,
+                      "category": "BEAUTY",
+                      "subCategory": "Magnam facilis conse",
+                      "imageKeys": [],
+                      "size": "L",
+                      "recommendFor": "MEN",
+                      "title": "Velit enim esse numq",
+                      "createdAt": "1753356528063",
+                      "updatedAt": "1753356528063",
+                      "userId": "930f3199-3acc-4337-bc60-df2205e81b9f"
+                    },
+                    {
+                      "id": "3feaa654-5bde-4afb-9539-0d7209f86e9c",
+                      "tittle": "",
+                      "productName": "Ginger Arnold",
+                      "price": 560,
+                      "description": "Ullam et et sapiente",
+                      "discount": 66,
+                      "category": "BEAUTY",
+                      "subCategory": "Dolor soluta dolor N",
+                      "imageKeys": [
+                        "873.jpg"
+                      ],
+                      "size": "M",
+                      "recommendFor": "KIDS",
+                      "title": "All Products",
+                      "createdAt": "1753356221522",
+                      "updatedAt": "1753357190058",
+                      "userId": "930f3199-3acc-4337-bc60-df2205e81b9f"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "3feaa654-5bde-4afb-9539-0d7209f86e9c",
+                "tittle": "",
+                "productName": "Ginger Arnold",
+                "price": 560,
+                "description": "Ullam et et sapiente",
+                "discount": 66,
+                "category": "BEAUTY",
+                "subCategory": "Dolor soluta dolor N",
+                "imageKeys": [
+                  "873.jpg"
+                ],
+                "size": "M",
+                "recommendFor": "KIDS",
+                "title": "All Products",
+                "createdAt": "1753356221522",
+                "updatedAt": "1753357190058",
+                "userId": "930f3199-3acc-4337-bc60-df2205e81b9f",
+                "user": {
+                  "id": "930f3199-3acc-4337-bc60-df2205e81b9f",
+                  "firstName": "Hamza",
+                  "lastName": "Ashfaq",
+                  "email": "bumeralikhan@gmail.com",
+                  "products": [
+                    {
+                      "id": "009fa112-b180-43de-a5d5-6e20c0af66e7",
+                      "tittle": "",
+                      "productName": "Serena Hurley",
+                      "price": 675,
+                      "description": "Velit quam non aliqu",
+                      "discount": 13,
+                      "category": "BEAUTY",
+                      "subCategory": "Voluptate ex aut qui",
+                      "imageKeys": [],
+                      "size": "S",
+                      "recommendFor": "WOMEN",
+                      "title": "Aliquam porro sunt d",
+                      "createdAt": "1753356524446",
+                      "updatedAt": "1753356524446",
+                      "userId": "930f3199-3acc-4337-bc60-df2205e81b9f"
+                    },
+                    {
+                      "id": "6e076298-86a7-48ee-85fe-ef149006d9cf",
+                      "tittle": "",
+                      "productName": "Genevieve Valencia",
+                      "price": 175,
+                      "description": "Necessitatibus aut v",
+                      "discount": 50,
+                      "category": "BEAUTY",
+                      "subCategory": "Magnam facilis conse",
+                      "imageKeys": [],
+                      "size": "L",
+                      "recommendFor": "MEN",
+                      "title": "Velit enim esse numq",
+                      "createdAt": "1753356528063",
+                      "updatedAt": "1753356528063",
+                      "userId": "930f3199-3acc-4337-bc60-df2205e81b9f"
+                    },
+                    {
+                      "id": "3feaa654-5bde-4afb-9539-0d7209f86e9c",
+                      "tittle": "",
+                      "productName": "Ginger Arnold",
+                      "price": 560,
+                      "description": "Ullam et et sapiente",
+                      "discount": 66,
+                      "category": "BEAUTY",
+                      "subCategory": "Dolor soluta dolor N",
+                      "imageKeys": [
+                        "873.jpg"
+                      ],
+                      "size": "M",
+                      "recommendFor": "KIDS",
+                      "title": "All Products",
+                      "createdAt": "1753356221522",
+                      "updatedAt": "1753357190058",
+                      "userId": "930f3199-3acc-4337-bc60-df2205e81b9f"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}
