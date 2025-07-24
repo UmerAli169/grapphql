@@ -2,10 +2,10 @@ import { changePassword, updateContactInfo } from "@/services/internal";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-interface AuthState {
+interface AuthState { 
   user: any | null;
   isAuthenticated: boolean;
-  setUser: (user: any) => void;
+  setUser: (user: any) => void; 
   logout: () => void;
   updatePassword: (data: {
     oldPassword: string;
@@ -13,7 +13,7 @@ interface AuthState {
   }) => Promise<void>;
   updateContactInfo: (data: {
     firstName: string;
-    lastName: string;
+    lastName: string; 
     email: string;
   }) => Promise<void>;
 }

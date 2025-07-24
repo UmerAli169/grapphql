@@ -4,11 +4,12 @@ export const GET_ALL_PRODUCTS = gql`
   query GetAllProducts {
     getAllProducts {
       id
+      tittle
       productName
       price
       description
       discount
-      category 
+      category
       subCategory
       imageKeys
       size
@@ -17,11 +18,33 @@ export const GET_ALL_PRODUCTS = gql`
     }
   }
 `;
+export const GET_PRODUCT_BY_ID = gql`
+  query GetProductById($id: ID!) {
+    getProductById(id: $id) {
+      id
+      tittle
+      productName
+      price
+      description
+      discount
+      category
+      subCategory
+      imageKeys
+      size
+      recommendFor
+      title
+      createdAt
+      updatedAt
+      userId
+    }
+  }
+`;
 
 export const CREATE_PRODUCT = gql`
   mutation CreateProduct($input: CreateProductInput!) {
     createProduct(input: $input) {
       id
+      tittle
       productName
       price
       description
@@ -35,6 +58,7 @@ export const UPDATE_PRODUCT = gql`
   mutation UpdateProduct($id: ID!, $input: UpdateProductInput!) {
     updateProduct(id: $id, input: $input) {
       id
+      tittle
       productName
       price
       description

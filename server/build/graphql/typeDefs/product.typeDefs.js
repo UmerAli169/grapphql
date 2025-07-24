@@ -5,6 +5,7 @@ const graphql_tag_1 = require("graphql-tag");
 exports.productTypeDefs = (0, graphql_tag_1.gql) `
   type Product {
     id: String!
+    tittle: String
     productName: String
     price: Float
     description: String
@@ -23,6 +24,7 @@ exports.productTypeDefs = (0, graphql_tag_1.gql) `
 
   input CreateProductInput {
     productName: String
+    tittle: String
     price: Float
     description: String
     discount: Float
@@ -36,6 +38,7 @@ exports.productTypeDefs = (0, graphql_tag_1.gql) `
 
   input UpdateProductInput {
     productName: String
+    tittle: String
     price: Float
     description: String
     discount: Float
@@ -60,5 +63,6 @@ exports.productTypeDefs = (0, graphql_tag_1.gql) `
 
   type Query {
     getAllProducts: [Product!]!
+    getProductById(id: ID!): Product
   }
 `;

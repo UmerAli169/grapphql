@@ -4,21 +4,36 @@ export const productResolvers = {
   Query: {
     getAllProducts: async (_: unknown, __: unknown, { user }: any) => {
       if (!user) {
-        throw new Error("Unauthorized: You must be logged in to view products.");
+        throw new Error(
+          "Unauthorized: You must be logged in to view products."
+        );
       }
-
       return await prisma.product.findMany({
         where: { userId: user.id },
         include: { user: true },
         orderBy: { createdAt: "desc" },
       });
     },
+    getProductById: async (_parent: any, args: any, context: any) => {
+
+      const product = await context.prisma.product.findUnique({
+        where: {
+          id: args.id, 
+        },
+      });
+
+      console.log(product, 'product');
+
+      return product
+    },
   },
 
   Mutation: {
     createProduct: async (_: unknown, { input }: any, { user }: any) => {
       if (!user) {
-        throw new Error("Unauthorized: You must be logged in to create a product.");
+        throw new Error(
+          "Unauthorized: You must be logged in to create a product."
+        );
       }
 
       return await prisma.product.create({

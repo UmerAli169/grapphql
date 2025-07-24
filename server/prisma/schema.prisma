@@ -23,7 +23,7 @@ enum Size {
   S
   M
   L
-  XL
+  XL 
 }
 
 model User {
@@ -34,7 +34,7 @@ model User {
   password  String?
   googleId  String?   @unique
   provider  String    @default("credentials")
-  products  Product[] @relation("UserProducts")
+  products  Product[] @relation("UserProducts") 
   reviews   Reviews[] @relation("UserReviews")
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
@@ -42,6 +42,7 @@ model User {
 
 model Product {
   id           String       @id @default(uuid())
+  tittle       String        @default("")
   productName  String
   description  String
   price        Float

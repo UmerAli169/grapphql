@@ -24,9 +24,9 @@ const ReviewSection = ({ productId }: { productId: string }) => {
   }, [productId]);
 
   const averageRating =
-    reviews.length > 0
+    reviews?.length > 0
       ? (
-          reviews.reduce((sum, review: any) => sum + review.rating, 0) /
+          reviews?.reduce((sum, review: any) => sum + review?.rating, 0) /
           reviews.length
         ).toFixed(0)
       : "0";
@@ -93,7 +93,7 @@ const ReviewSection = ({ productId }: { productId: string }) => {
           </div>
         </div>
         <div className="mt-[40px] space-y-[30px] ">
-          {reviews.slice(0, 3).map((review: any, index, array) => (
+          {reviews?.slice(0, 3).map((review: any, index, array) => (
             <div key={review._id || index} className="rounded-lg">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full flex items-center justify-center font-bold">

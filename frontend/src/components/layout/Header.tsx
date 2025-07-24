@@ -12,7 +12,7 @@ import IconSection from "../navbar/IconSection";
 import MobileMenu from "../navbar/MobileMenu";
 import { useAuthStore } from "@/store/authStore";
 import { useCartStore } from "@/store/cartStore";
-import useProductStore from "@/store/productStore";
+import {useProductStore} from "@/store/productStore";
 
 const Header = () => {
   const router = useRouter();
@@ -26,7 +26,6 @@ const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [isCartOpen, setIsCartOpen] = useState(false);
   const { products } = useProductStore();
-
   const { cart, fetchCart } = useCartStore();
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   useEffect(() => {
@@ -56,8 +55,8 @@ const Header = () => {
     }
   };
 
-  const searchResults = products?.filter((product) =>
-    product.name.toLowerCase().includes(searchQuery.toLowerCase())
+  const searchResults = products?.filter((product:any) =>
+    product?.name?.toLowerCase().includes(searchQuery.toLowerCase())
   );
   return (
     <>

@@ -3,8 +3,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Button from "../shared/Button";
 import Wrapper from "@/app/wrapper";
-import AboutSection from "../about/AboutSection";
-import Accordion from "../about/Accordion";
 import { CartModal } from "../model/RightModal";
 import { useProductStore } from "@/store/productStore";
 import { useWishlistStore } from "../../store/useWishlistStore";
@@ -17,9 +15,11 @@ interface ProductProps {
 
 const ProductDetails = ({ productInfo }: ProductProps) => {
   const { product } = useProductStore();
-  const { wishlist, fetchWishlist, toggleWishlist, isInWishlist }: any =
-    useWishlistStore();
-  const { addToCart, cart } = useCartStore();
+  console.log(product, "Product Details Page Da`122ta");
+
+  // const { wishlist, fetchWishlist, toggleWishlist, isInWishlist }: any =
+  //   useWishlistStore();
+  // const { addToCart, cart } = useCartStore();
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isCartOpen, setIsCartOpen] = React.useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -37,43 +37,19 @@ const ProductDetails = ({ productInfo }: ProductProps) => {
         ) / reviewsArray.length
       : 0;
 
-  const scroll = (direction: "left" | "right") => {
-    if (scrollRef.current) {
-      const { scrollLeft, clientWidth } = scrollRef.current;
-      const scrollAmount = clientWidth / 2;
-      scrollRef.current.scrollTo({
-        left:
-          direction === "left"
-            ? scrollLeft - scrollAmount
-            : scrollLeft + scrollAmount,
-        behavior: "smooth",
-      });
-    }
-  };
-
   const handleAddToCart = async () => {
     try {
-      await addToCart(product._id, 1);
+      // await addToCart(product.id, 1);
       setIsCartOpen(true);
     } catch (error) {
       console.error("Error adding to cart:", error);
     }
   };
 
-  const handleImageChange = (direction: "left" | "right") => {
-    if (direction === "left") {
-      setCurrentImageIndex((prevIndex) =>
-        prevIndex === 0 ? product.thumbnailImages.length - 1 : prevIndex - 1
-      );
-    } else {
-      setCurrentImageIndex((prevIndex) =>
-        prevIndex === product.thumbnailImages.length - 1 ? 0 : prevIndex + 1
-      );
-    }
-  };
-  let checkIsWishList = isInWishlist(product._id);
+ 
+  // let checkIsWishList = isInWishlist(product.id);
 
-  fetchWishlist();
+  // fetchWishlist();
 
   return (
     <Wrapper>
@@ -81,19 +57,17 @@ const ProductDetails = ({ productInfo }: ProductProps) => {
         <div className="flex flex-col items-center w-full md:w-1/3 relative">
           <button
             className="absolute left-[-20px] top-1/3 -translate-y-1/2 rounded-full hidden lg:flex z-[10]"
-            onClick={() => handleImageChange("left")}
           >
             <img src="/svgs/Shared/ProductSection/leftArrow.svg" alt="left" />
           </button>
           <img
-            src={product.thumbnailImages[currentImageIndex]}
-            alt={product.name}
+            src="/Product/productDetils/pic.png"
+            alt=""
             className="w-full h-full max-w-[495px] max-h-[495px] object-cover"
           />
 
           <button
             className="absolute right-[-20px] top-1/3 -translate-y-1/2 rounded-full hidden lg:flex z-[10]"
-            onClick={() => handleImageChange("right")}
           >
             <img src="/svgs/Shared/ProductSection/rightArrow.svg" alt="right" />
           </button>
@@ -102,15 +76,11 @@ const ProductDetails = ({ productInfo }: ProductProps) => {
               ref={scrollRef}
               className="flex mt-[20px] gap-[20px] overflow-x-auto scrollbar-hide"
             >
-              {product.thumbnailImages.map((thumb, index) => (
-                <img
-                  key={`${thumb}-${index}`}
-                  src={thumb}
-                  alt="thumbnail"
-                  className="max-w-[83px] w-full max-h-[83px] object-cover cursor-pointer"
-                  onClick={() => setCurrentImageIndex(index)} // Set current image when clicking on thumbnail
-                />
-              ))}
+              <img
+                src="/Product/productDetils/pic.png"
+                alt="thumbnail"
+                className="max-w-[83px] w-full max-h-[83px] object-cover cursor-pointer"
+              />
             </div>
           </div>
         </div>
@@ -133,7 +103,7 @@ const ProductDetails = ({ productInfo }: ProductProps) => {
               />
             ))}
             <span className="lg:text-[14px] ml-[8px] text-[12px] font-medium font-[Montserrat]  text-[#697586] lg:leading-[22px] leading-[20px]">
-              {Array.isArray(product.reviews) ? product.reviews.length : 0}{" "} 
+              {Array.isArray(product.reviews) ? product.reviews.length : 0}{" "}
               reviews
             </span>
           </div>
@@ -142,7 +112,7 @@ const ProductDetails = ({ productInfo }: ProductProps) => {
           </p>
           <div className="lg:text-[14px] text-[12px] font-normal font-[Montserrat] text-[#697586] lg:leading-[22px] leading-[20px]">
             <p>{product.description}</p>
-            <p>Size: {product.size?.join(", ") || "N/A"}</p>
+            <p>Size: {product.size || "N/A"}</p>
             <div className="flex flex-col gap-[6px]">
               <div className=" leading-[20px] font-medium text-[#383838]">
                 Recommended For
@@ -150,7 +120,7 @@ const ProductDetails = ({ productInfo }: ProductProps) => {
               <span className="flex flex-col font-[14px] leading-[20px]  text-[#697586] font-[Montserrat]">
                 {product.recommendFor}
               </span>
-            </div>  
+            </div>
           </div>
           <div className="flex items-center gap-[10px]">
             <Button
@@ -159,7 +129,7 @@ const ProductDetails = ({ productInfo }: ProductProps) => {
             >
               Add To Cart
             </Button>
-            <img
+            {/* <img
               src={
                 checkIsWishList
                   ? "/svgs/Shared/ProductSection/heart-filled.svg"
@@ -168,25 +138,13 @@ const ProductDetails = ({ productInfo }: ProductProps) => {
               alt="wishlist"
               className="cursor-pointer"
               onClick={() => toggleWishlist(product)}
-            />
+            /> */}
           </div>
-          <CartModal
+          {/* <CartModal
             isOpen={isCartOpen}
             onClose={() => setIsCartOpen(false)}
             cartItems={cart}
-          />
-
-          {aboutData.sections.map((section, sectionIndex) => (
-            <div key={sectionIndex}>
-              {section.items.map((item, itemIndex) => (
-                <Accordion
-                  key={itemIndex}
-                  question={item.question}
-                  answer={item.answer}
-                />
-              ))}
-            </div>
-          ))}
+          /> */}
         </div>
       </div>
     </Wrapper>

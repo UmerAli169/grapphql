@@ -13,19 +13,9 @@
       "label": "BESTSELLERS",
       "enabled": true
     },
+    
+    
     {
-      "label": "COLLECTION",
-      "enabled": true
-    },
-    {
-      "label": "ABOUT US",
-      "enabled": true,
-      "hasSubmenu": true
-    },
-    {
-      "label": "BLOG",
-      "enabled": true
-    },{
       "label": "AddProduct",
       "enabled": true
     }

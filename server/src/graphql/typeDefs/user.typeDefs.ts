@@ -2,7 +2,7 @@ import { gql } from 'graphql-tag';
 
 export const userTypeDefs = gql`
   type User {
-    id: Int!
+    id: String!
     firstName: String!
     lastName: String!
     email: String!

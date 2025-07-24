@@ -3,7 +3,9 @@ import React from 'react'
 
 function page() {
   return (
-    <div><ProductDetails/></div>
+    <div>
+      <ProductDetails/>
+      </div>
   )
 }
 

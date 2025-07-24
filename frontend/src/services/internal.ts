@@ -1,5 +1,5 @@
 "use client"
-import axios from "axios";
+import axios from "axios"; 
 import toast from "react-hot-toast";
 
 const api = axios.create({
@@ -7,6 +7,10 @@ const api = axios.create({
   withCredentials: true,
   headers: { "Content-Type": "application/json" },
 });
+// src/api/products.ts
+import { useMutation, useQuery } from "@apollo/client";
+import { GET_ALL_PRODUCTS,GET_PRODUCT_BY_ID } from "@/lib/graphql/queries";
+import client from "@/lib/apolloClient";
 
 api.interceptors.response.use(
   (response) => response,
@@ -61,9 +65,6 @@ export const resetPassword = async (token: any, password: any) => {
   }
 };
 
-
-
-
 export const getUser = async () => {
   try {
     const response = await api.get("/api/auth/me");
@@ -73,10 +74,32 @@ export const getUser = async () => {
   }
 };
 
+
+
 export const getAllProducts = async () => {
   try {
-    const response = await api.get("/api/products/getAllProducts");
-    return response.data;
+    const { data } = await client.query({
+      query: GET_ALL_PRODUCTS,
+      fetchPolicy: "no-cache", // Optional: skip cache
+    });
+    return data.getAllProducts;
+  } catch (error) {
+    console.log("GraphQL Error:", error);
+    throw error;
+  }
+};
+
+
+export const getProductById = async (productId: any) => {
+  try {
+    const { data } = await client.query({
+      query: GET_PRODUCT_BY_ID,
+      variables: { id: productId },
+      fetchPolicy: "no-cache", 
+    });
+    console.log(data, 'data');
+    
+    return data.getProductById;
   } catch (error) {
     console.log(error);
   }
@@ -84,8 +107,9 @@ export const getAllProducts = async () => {
 
 export const getWishlist = async () => {
   try {
-    const response = await api.get(`/api/products/getWishlist`);
-    return response.data;
+    // const response = await api.get(`/api/products/getWishlist`);
+    // return response?.data;
+    return null
   } catch (error) {
     console.log(error);
   }
@@ -112,14 +136,7 @@ export const removeFromWishlist = async (id: string) => {
   }
 };
 
-export const getProductById = async (productId: any) => {
-  try {
-    const response = await api.put(`/api/products/getProductById/${productId}`);
-    return response.data;
-  } catch (error) {
-    console.log(error);
-  }
-};
+
 
 export const createReview = async (formData: any) => {
   try {
@@ -233,7 +250,7 @@ export const updateContactInfo = async (data: {
 
 export const getAllCategories = async () => {
   const response = await api.get("/api/products/categories");
-  return response.data;
+  return null
 };
 
 export const updateAddress = async (data: {

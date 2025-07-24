@@ -3,6 +3,7 @@ import { gql } from "graphql-tag";
 export const productTypeDefs = gql`
   type Product {
     id: String!
+    tittle: String
     productName: String
     price: Float
     description: String
@@ -21,6 +22,7 @@ export const productTypeDefs = gql`
 
   input CreateProductInput {
     productName: String
+    tittle: String
     price: Float
     description: String
     discount: Float
@@ -34,6 +36,7 @@ export const productTypeDefs = gql`
 
   input UpdateProductInput {
     productName: String
+    tittle: String
     price: Float
     description: String
     discount: Float
@@ -58,5 +61,6 @@ export const productTypeDefs = gql`
 
   type Query {
     getAllProducts: [Product!]!
+    getProductById(id: ID!): Product
   }
 `;

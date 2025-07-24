@@ -26,6 +26,15 @@ exports.productResolvers = {
                 orderBy: { createdAt: "desc" },
             });
         }),
+        getProductById: (_parent, args, context) => __awaiter(void 0, void 0, void 0, function* () {
+            const product = yield context.prisma.product.findUnique({
+                where: {
+                    id: args.id,
+                },
+            });
+            console.log(product, 'product');
+            return product;
+        }),
     },
     Mutation: {
         createProduct: (_1, _a, _b) => __awaiter(void 0, [_1, _a, _b], void 0, function* (_, { input }, { user }) {

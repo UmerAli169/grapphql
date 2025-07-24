@@ -16,7 +16,7 @@ interface Product {
   reviews: { rating: number }[];
 }
 
-interface ProductCardProps {
+interface ProductCardProps { 
   product: Product;
   addToCart: (product: any) => void;
   toggleWishlist: (productId: any) => void;
@@ -32,11 +32,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
   const [isHovered, setIsHovered] = useState(false);
   const router = useRouter();
   const handleRedirect = () => {
-    router.push(`/ProductDetails?id=${product._id}`);
+    router.push(`/ProductDetails?id=${product?.id}`);
   };
-  const averageRating = product.reviews?.length
-    ? product.reviews.reduce((sum, rate) => sum + rate.rating, 0) /
-      product.reviews.length
+  const averageRating = product?.reviews?.length
+    ? product?.reviews.reduce((sum, rate) => sum + rate?.rating, 0) /
+      product?.reviews?.length
     : 0;
   return (
     <CustomCard
@@ -76,7 +76,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         )}
 
         <img
-          src={product.image}
+          src='/Product/productDetils/pic.png'
           alt={product.name}
           onClick={handleRedirect}
           className="w-full h-full max-h-[442x] object-cover rounded-[6px]"

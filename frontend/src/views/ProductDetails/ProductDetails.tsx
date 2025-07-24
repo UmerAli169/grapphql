@@ -12,12 +12,10 @@ import { useParams } from "react-router-dom";
 function Page() {
   const searchParams = useSearchParams();
   const productId = searchParams.get("id");   
-//   const { productId } = useParams();
-// console.log(productId,'productIdproductId')
   const { product, fetchProduct, likeproduct, productdetails }: any =
     useProductStore();
-  const { toggleWishlist, isInWishlist } = useWishlistStore();
-  const { addToCart } = useCartStore();
+  // const { toggleWishlist, isInWishlist } = useWishlistStore();
+  // const { addToCart } = useCartStore();
   useEffect(() => {
     const getProduct = async () => {
       if (!productId) return;
@@ -36,20 +34,7 @@ function Page() {
     <div className="py-[40px]">
       {product && <ProductDetails productInfo={product} />}
       <ReviewSection productId={productId as string} />
-      <ProductSection
-        products={productdetails as any}
-        addToCart={addToCart as any}
-        toggleWishlist={toggleWishlist}
-        isInWishlist={isInWishlist}
-        cardWidth={289}
-      />
-      <ProductSection
-        products={likeproduct as any}
-        addToCart={addToCart as any}
-        toggleWishlist={toggleWishlist}
-        isInWishlist={isInWishlist}
-        cardWidth={289}
-      />
+      
     </div>
   );
 }
