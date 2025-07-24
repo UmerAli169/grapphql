@@ -3,11 +3,12 @@
 import React from "react";
 import MainPage from "../views/MainPage/Dashboard";
 import Link from "next/link";
-import { useAuthStore } from "@/store/authStore"; 
+import { useAuthStore } from "@/store/authStore";
 import Wrapper from "@/app/wrapper";
 
 export default function Page() {
   const { user } = useAuthStore();
+  console.log(user);
   if (user) {
     return <MainPage />;
   }

@@ -22,7 +22,6 @@ const ReviewSection = ({ productId }: { productId: string }) => {
 
     fetchReviews();
   }, [productId]);
-
   const averageRating =
     reviews?.length > 0
       ? (

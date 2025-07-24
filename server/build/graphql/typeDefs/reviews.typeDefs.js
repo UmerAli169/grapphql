@@ -7,7 +7,7 @@ exports.reviewsTypeDefs = void 0;
 const graphql_tag_1 = __importDefault(require("graphql-tag"));
 exports.reviewsTypeDefs = (0, graphql_tag_1.default) `
   type Review {
-    id: ID!
+    id: String!
     comment: String
     rating: Float
     productId: ID!

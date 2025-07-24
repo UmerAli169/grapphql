@@ -1,5 +1,5 @@
 "use client"
-import axios from "axios"; 
+import axios from "axios";
 import toast from "react-hot-toast";
 
 const api = axios.create({
@@ -9,8 +9,8 @@ const api = axios.create({
 });
 // src/api/products.ts
 import { useMutation, useQuery } from "@apollo/client";
-import { GET_ALL_PRODUCTS,GET_PRODUCT_BY_ID } from "@/lib/graphql/product";
-import { GET_REVIEWS_BY_PRODUCT,CREATE_REVIEW } from "@/lib/graphql/reviews";
+import { GET_ALL_PRODUCTS, GET_PRODUCT_BY_ID } from "@/lib/graphql/product";
+import { GET_REVIEWS_BY_PRODUCT, CREATE_REVIEW } from "@/lib/graphql/reviews";
 
 import client from "@/lib/apolloClient";
 
@@ -46,7 +46,7 @@ export const login = async (data: any) => {
 };
 
 export const recoverPassword = async (email: any) => {
-  try { 
+  try {
     const response = await api.post("/api/auth/recover-password", { email });
     toast.success(response.data.message || "Password recovery email sent!");
     return response.data;
@@ -97,9 +97,8 @@ export const getProductById = async (productId: any) => {
     const { data } = await client.query({
       query: GET_PRODUCT_BY_ID,
       variables: { id: productId },
-      fetchPolicy: "no-cache", 
+      fetchPolicy: "no-cache",
     });
-    
     return data.getProductById;
   } catch (error) {
     console.log(error);
@@ -142,19 +141,18 @@ export const removeFromWishlist = async (id: string) => {
 export const createReview = async (formData: {
   comment: string;
   rating: number;
-  productId: string; 
+  productId: string;
 }) => {
   try {
-    
+
     const { data } = await client.mutate({
       mutation: CREATE_REVIEW,
       variables: { input: formData },
     });
-console.log(data, "data for review submission");
     toast.success("Review submitted successfully!");
     return data.createReview;
   } catch (error: any) {
-    console.error("GraphQL Error:", error); 
+    console.error("GraphQL Error:", error);
     toast.error("Failed to submit review");
   }
 };
@@ -166,7 +164,10 @@ export const getReviewsByProduct = async (productId: string) => {
       variables: { productId },
       fetchPolicy: "no-cache", // optional: prevents caching
     });
-    return data.getReviewsByProduct;
+
+
+
+    return data.getReviewsByProductId;
   } catch (error) {
     console.error("GraphQL Error:", error);
     return [];

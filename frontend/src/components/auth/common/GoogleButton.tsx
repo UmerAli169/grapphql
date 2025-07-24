@@ -10,14 +10,14 @@ interface GoogleButtonProps {
 
 export const GoogleButton = ({ mode }: GoogleButtonProps) => {
   const router = useRouter();
- const setUser = useAuthStore((state) => state.setUser);
+  const setUser = useAuthStore((state) => state.setUser);
 
   const handleSuccess = async (credentialResponse: any) => {
     try {
       const { credential } = credentialResponse;
 
       const res = await axios.post(
-        "http://localhost:5000/api/auth/google", 
+        "http://localhost:5000/api/auth/google",
         { token: credential, mode },
         { withCredentials: true } // 👈 for cookies
       );
@@ -25,8 +25,6 @@ export const GoogleButton = ({ mode }: GoogleButtonProps) => {
       setUser(user);
 
       toast.success(message || `${mode} successful`);
-
-      
     } catch (error: any) {
       toast.error(error?.response?.data?.error || `${mode} failed`);
     }

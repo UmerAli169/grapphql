@@ -2,7 +2,7 @@ import gql from "graphql-tag";
 
 export const reviewsTypeDefs = gql`
   type Review {
-    id: ID!
+    id: String!
     comment: String
     rating: Float
     productId: ID!
@@ -41,4 +41,4 @@ export const reviewsTypeDefs = gql`
   }
 `;
 
- 
+

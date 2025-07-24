@@ -42,7 +42,6 @@ export const CREATE_PRODUCT = gql`
   mutation CreateProduct($input: CreateProductInput!) {
     createProduct(input: $input) {
       id
-
       productName
       price
       description

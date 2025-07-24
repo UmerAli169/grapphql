@@ -1,12 +1,12 @@
 import { gql } from "@apollo/client";
 export const GET_REVIEWS_BY_PRODUCT = gql`
-  query GetReviewsByProduct($productId: String!) {
-    getReviewsByProduct(productId: $productId) {
+  query GetReviewsByProduct($productId: ID!) {
+    getReviewsByProductId(productId: $productId) {
       id
       comment
       rating
       productId
-      userId
+      userId 
       
     }
   }
