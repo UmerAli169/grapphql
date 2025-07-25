@@ -21,17 +21,20 @@ exports.productResolvers = {
                 throw new Error("Unauthorized: You must be logged in to view products.");
             }
             return yield db_1.default.product.findMany({
-                include: { user: true },
+                include: { user: true, reviews: true },
                 orderBy: { createdAt: "desc" },
             });
         }),
-        getProductById: (_parent, args, context) => __awaiter(void 0, void 0, void 0, function* () {
-            const product = yield context.prisma.product.findUnique({
-                where: {
-                    id: args.id,
-                },
+        getProductById: (_, args, ctx) => __awaiter(void 0, void 0, void 0, function* () {
+            const product = yield db_1.default.product.findUnique({
+                where: { id: args.id },
+                include: { reviews: true },
             });
-            return product;
+            if (!product) {
+                throw new Error("Product not found");
+            }
+            // Ensure reviews is never null
+            return Object.assign(Object.assign({}, product), { reviews: product.reviews || [] });
         }),
     },
     Mutation: {

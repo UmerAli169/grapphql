@@ -14,6 +14,9 @@ export const GET_ALL_PRODUCTS = gql`
       size
       recommendFor
       title
+       reviews {
+      rating
+    }
     }
   }
 `;
@@ -34,6 +37,9 @@ export const GET_PRODUCT_BY_ID = gql`
       createdAt
       updatedAt
       userId
+      reviews {
+      rating
+    }
     }
   }
 `;

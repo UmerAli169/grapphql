@@ -31,7 +31,6 @@ const ReviewSection = ({ productId }: { productId: string }) => {
           reviews.length
         ).toFixed(0)
       : "0";
-console.log(reviews[0], "reviews");
   return (
     <Wrapper>
       <div className="rounded-lg py-[40px] w-full mx-auto">

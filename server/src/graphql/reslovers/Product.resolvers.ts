@@ -9,20 +9,25 @@ export const productResolvers = {
         );
       }
       return await prisma.product.findMany({
-        include: { user: true },
+        include: { user: true, reviews: true },
         orderBy: { createdAt: "desc" },
       });
     },
-    getProductById: async (_parent: any, args: any, context: any) => {
-
-      const product = await context.prisma.product.findUnique({
-        where: {
-          id: args.id, 
-        },
+    getProductById: async (_: any, args: { id: string }, ctx: any) => {
+      const product = await prisma.product.findUnique({
+        where: { id: args.id },
+        include: { reviews: true },
       });
 
+      if (!product) {
+        throw new Error("Product not found");
+      }
 
-      return product
+      // Ensure reviews is never null
+      return {
+        ...product,
+        reviews: product.reviews || [],
+      };
     },
   },
 

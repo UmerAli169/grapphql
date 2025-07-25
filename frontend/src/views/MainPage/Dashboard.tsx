@@ -12,7 +12,6 @@ function MainPage() {
   const { toggleWishlist, isInWishlist, fetchWishlist } = useWishlistStore();
   const { addToCart } = useCartStore();
   const { products } = useProductStore();
-
   useEffect(() => {
     fetchProducts();
     // fetchWishlist()

@@ -20,6 +20,7 @@ exports.productTypeDefs = (0, graphql_tag_1.gql) `
     updatedAt: String
     userId: String!
     user: User!
+    reviews: [Review!]!
   }
 
   input CreateProductInput {

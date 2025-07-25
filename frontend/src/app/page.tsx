@@ -8,7 +8,6 @@ import Wrapper from "@/app/wrapper";
 
 export default function Page() {
   const { user } = useAuthStore();
-  console.log(user);
   if (user) {
     return <MainPage />;
   }

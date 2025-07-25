@@ -18,6 +18,7 @@ export const productTypeDefs = gql`
     updatedAt: String
     userId: String!
     user: User!
+    reviews: [Review!]!
   }
 
   input CreateProductInput {

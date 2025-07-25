@@ -26,7 +26,6 @@ const ProductDetails = ({ productInfo }: ProductProps) => {
   if (!product) {
     return <p className="text-center">Loading product...</p>;
   }
-
   const reviewsArray = Array.isArray(product.reviews) ? product.reviews : [];
   const averageRating =
     reviewsArray.length > 0
@@ -45,18 +44,14 @@ const ProductDetails = ({ productInfo }: ProductProps) => {
     }
   };
 
- 
   // let checkIsWishList = isInWishlist(product.id);
 
   // fetchWishlist();
-
   return (
     <Wrapper>
       <div className="flex flex-col md:flex-row justify-between lg:gap-[0px] gap-[80px]">
         <div className="flex flex-col items-center w-full md:w-1/3 relative">
-          <button
-            className="absolute left-[-20px] top-1/3 -translate-y-1/2 rounded-full hidden lg:flex z-[10]"
-          >
+          <button className="absolute left-[-20px] top-1/3 -translate-y-1/2 rounded-full hidden lg:flex z-[10]">
             <img src="/svgs/Shared/ProductSection/leftArrow.svg" alt="left" />
           </button>
           <img
@@ -65,9 +60,7 @@ const ProductDetails = ({ productInfo }: ProductProps) => {
             className="w-full h-full max-w-[495px] max-h-[495px] object-cover"
           />
 
-          <button
-            className="absolute right-[-20px] top-1/3 -translate-y-1/2 rounded-full hidden lg:flex z-[10]"
-          >
+          <button className="absolute right-[-20px] top-1/3 -translate-y-1/2 rounded-full hidden lg:flex z-[10]">
             <img src="/svgs/Shared/ProductSection/rightArrow.svg" alt="right" />
           </button>
           <div className="w-full relative">
