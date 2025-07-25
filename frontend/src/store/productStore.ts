@@ -18,7 +18,7 @@ interface Product {
   size: string[];
   recommendFor: string;
   blog: string;
-}
+}  
 
 interface ProductState {
   products: Product[];

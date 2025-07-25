@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import axios from "axios";
 import toast from "react-hot-toast";
 
@@ -10,7 +10,7 @@ const api = axios.create({
 // src/api/products.ts
 import { useMutation, useQuery } from "@apollo/client";
 import { GET_ALL_PRODUCTS, GET_PRODUCT_BY_ID } from "@/lib/graphql/product";
-import { GET_REVIEWS_BY_PRODUCT, CREATE_REVIEW } from "@/lib/graphql/reviews";
+import { GET_REVIEWS_BY_PRODUCT, CREATE_REVIEW,GET_ALL_REVIEW } from "@/lib/graphql/reviews";
 
 import client from "@/lib/apolloClient";
 
@@ -76,8 +76,6 @@ export const getUser = async () => {
   }
 };
 
-
-
 export const getAllProducts = async () => {
   try {
     const { data } = await client.query({
@@ -90,7 +88,6 @@ export const getAllProducts = async () => {
     throw error;
   }
 };
-
 
 export const getProductById = async (productId: any) => {
   try {
@@ -109,7 +106,7 @@ export const getWishlist = async () => {
   try {
     // const response = await api.get(`/api/products/getWishlist`);
     // return response?.data;
-    return null
+    return null;
   } catch (error) {
     console.log(error);
   }
@@ -136,20 +133,18 @@ export const removeFromWishlist = async (id: string) => {
   }
 };
 
-
-
 export const createReview = async (formData: {
   comment: string;
   rating: number;
   productId: string;
 }) => {
   try {
-
     const { data } = await client.mutate({
       mutation: CREATE_REVIEW,
       variables: { input: formData },
     });
     toast.success("Review submitted successfully!");
+    await allReviews();
     return data.createReview;
   } catch (error: any) {
     console.error("GraphQL Error:", error);
@@ -165,9 +160,18 @@ export const getReviewsByProduct = async (productId: string) => {
       fetchPolicy: "no-cache", // optional: prevents caching
     });
 
-
-
     return data.getReviewsByProductId;
+  } catch (error) {
+    console.error("GraphQL Error:", error);
+    return [];
+  }
+};
+export const allReviews = async () => {
+  try {
+    const { data } = await client.query({
+      query: GET_ALL_REVIEW,
+    });
+    return data.getAllReviews;
   } catch (error) {
     console.error("GraphQL Error:", error);
     return [];
@@ -265,7 +269,7 @@ export const updateContactInfo = async (data: {
 
 export const getAllCategories = async () => {
   const response = await api.get("/api/products/categories");
-  return null
+  return null;
 };
 
 export const updateAddress = async (data: {

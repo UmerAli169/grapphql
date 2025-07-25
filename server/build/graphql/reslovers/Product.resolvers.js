@@ -21,7 +21,6 @@ exports.productResolvers = {
                 throw new Error("Unauthorized: You must be logged in to view products.");
             }
             return yield db_1.default.product.findMany({
-                where: { userId: user.id },
                 include: { user: true },
                 orderBy: { createdAt: "desc" },
             });

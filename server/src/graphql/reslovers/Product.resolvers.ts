@@ -9,7 +9,6 @@ export const productResolvers = {
         );
       }
       return await prisma.product.findMany({
-        where: { userId: user.id },
         include: { user: true },
         orderBy: { createdAt: "desc" },
       });

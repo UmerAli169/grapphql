@@ -14,6 +14,7 @@ exports.reviewsTypeDefs = (0, graphql_tag_1.default) `
     userId: ID!
     product: Product!
     user: User!
+    createdAt: String
   }
 
   input CreateReviewInput {

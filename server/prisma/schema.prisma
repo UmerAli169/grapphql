@@ -68,7 +68,7 @@ model Reviews {
   rating    Float?
   productId String
   userId    String
-  product   Product  @relation("ProductReviews", fields: [productId], references: [id])
+  product   Product  @relation("ProductReviews", fields: [productId], references: [id],onDelete: Cascade)
   user      User     @relation("UserReviews", fields: [userId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

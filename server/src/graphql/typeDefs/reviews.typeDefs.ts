@@ -9,6 +9,7 @@ export const reviewsTypeDefs = gql`
     userId: ID!
     product: Product!
     user: User!
+    createdAt: String
   }
 
   input CreateReviewInput {

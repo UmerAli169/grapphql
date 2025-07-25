@@ -5,6 +5,8 @@ import Button from "../shared/Button";
 import Wrapper from "@/app/wrapper";
 import { ReviewModal } from "./WriteReview";
 import { useAuthStore } from "@/store/authStore";
+import dayjs from "dayjs";
+
 import Link from "next/link";
 const ReviewSection = ({ productId }: { productId: string }) => {
   const UserId = useAuthStore((state: any) => state.user?.id);
@@ -29,15 +31,7 @@ const ReviewSection = ({ productId }: { productId: string }) => {
           reviews.length
         ).toFixed(0)
       : "0";
-
-  const formatDate = (dateStr: string) => {
-    const date = new Date(dateStr);
-    const day = String(date.getDate()).padStart(2, "0");
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const year = String(date.getFullYear()).slice(-2);
-    return `${day}/${month}/${year}`;
-  };
-
+console.log(reviews[0], "reviews");
   return (
     <Wrapper>
       <div className="rounded-lg py-[40px] w-full mx-auto">
@@ -103,11 +97,11 @@ const ReviewSection = ({ productId }: { productId: string }) => {
                 </div>
                 <div>
                   <div className="flex items-center gap-2 ">
-                    <p className="font-medium font-[14px] leading-[20px]">
-                      {review.userId.firstName}
+                    <p className="font-medium  leading-[20px]">
+                      {review.user?.firstName || "Anonymous"}
                     </p>
                     {review.verified && (
-                      <p className="font-normal text-[#B0A6BD] font-[14px] leading-[20px]">
+                      <p className=" text-[#B0A6BD] font-[14px] leading-[20px]">
                         Verified Reviewer
                       </p>
                     )}
@@ -128,39 +122,14 @@ const ReviewSection = ({ productId }: { productId: string }) => {
                     ))}
                   </div>
                 </div>
-                <span className="ml-auto font-normal text-[#B0A6BD] font-[14px] leading-[20px]">
-                  {formatDate(review.date)}
+                <span className="ml-auto  text-[#B0A6BD] font-[14px] leading-[20px]">
+                  {dayjs(Number(review.createdAt)).format("DD/MM/YYYY")}
                 </span>
               </div>
 
               <div className="mt-[20px] lg:ml-[50px] ">
-                <p className="font-medium font-[16px] leading-[20px] ">
-                  {review.title}
-                </p>
-                <p className="font-normal font-[14px] leading-[22px] text-[#697586] ">
-                  {review.text}
-                </p>
-                {review.imageKeys?.length > 0 && (
-                  <div className="flex gap-2 mt-2 ">
-                    {review.imageKeys.map((img: string, i: number) => (
-                      <img
-                        key={i}
-                        src={img}
-                        alt="review"
-                        className="w-16 h-16 rounded-lg"
-                      />
-                    ))}
-                  </div>
-                )}
+                <p className="font-[16px] leading-[20px] ">{review.comment}</p>
               </div>
-
-              {index !== array.length - 1 && (
-                <img
-                  src="/svgs/Review/flowerin.svg"
-                  alt=""
-                  className=" w-full max-w-[2500px] lg:pt-[30px] pt-[20px]"
-                />
-              )}
             </div>
           ))}
         </div>
