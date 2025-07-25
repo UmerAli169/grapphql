@@ -1,7 +1,7 @@
 "use client";
 import axios from "axios";
 import toast from "react-hot-toast";
-
+import { ADD_TO_CART, GET_CART,UPDATE_CART_ITEM, REMOVE_CART_ITEM } from "@/lib/graphql/cart";
 const api = axios.create({
   baseURL: "http://localhost:5000",
   withCredentials: true,
@@ -187,58 +187,52 @@ export const getReviewsByUser = async (userId: any) => {
   }
 };
 
-export const addToCart = async (productId: string, quantity: number) => {
-  try {
-    const response = await api.post("/api/products/addToCart", {
-      productId,
-      quantity,
-    });
-    toast.success(response.data.message || "Product added to cart!");
-    return response.data;
-  } catch (error) {
-    console.error("Error adding to cart:", error);
-    console.log(error);
-  }
-};
+
 
 export const fetchCart = async () => {
-  try {
-    const response = await api.get("/api/products/fetchCart");
-    return response?.data;
-  } catch (error) {
-    console.error("Error fetching cart:", error);
-    console.log(error);
-  }
+  const { data } = await client.query({
+    query: GET_CART,
+    fetchPolicy: "no-cache",
+  });
+  return data.getCart;
 };
 
-export const updateCartItemQuantity = async (
-  cartItemId: string,
-  quantity: number
-) => {
+export const addToCart = async (productId: string, quantity: number = 1) => {
   try {
-    console.log(cartItemId, quantity, "cartItemId,quantity");
-    const response = await api.put(`/api/products/updateCart/${cartItemId}`, {
-      quantity,
+
+    const { data } = await client.mutate({
+      mutation: ADD_TO_CART,
+      variables: {
+        input: {
+          productId,
+          quantity,
+        },
+      },
     });
-    return response.data;
+
+    return data?.addToCart;
   } catch (error) {
-    console.error("Error updating cart item:", error);
-    console.log(error);
+    console.error("Error adding to cart:", error);
   }
 };
 
-export const removeCartItem = async (cartItemId: string) => {
-  try {
-    const response = await api.delete(
-      `/api/products/removeFromCart/${cartItemId}`
-    );
-    toast.success("Product removed from cart!");
-    return response.data;
-  } catch (error) {
-    console.error("Error removing cart item:", error);
-    console.log(error);
-  }
+
+export const updateCartItemQuantity = async (id: string, quantity: number) => {
+  console.log( "Updating cart item:", id, "to quantity:", quantity);
+  await client.mutate({
+    mutation: UPDATE_CART_ITEM,
+    variables: { id, quantity },
+  });
 };
+
+export const removeCartItem = async (id: string) => {
+  await client.mutate({
+    mutation: REMOVE_CART_ITEM,
+    variables: { id },
+  });
+};
+
+;
 
 export const changePassword = async (data: {
   oldPassword: string;

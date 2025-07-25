@@ -2,7 +2,7 @@ import prisma from "../../lib/db";
 
 export const cartResolvers = {
   Query: {
-    getMyCart: async (_: any, __: any, { user }: any) => {
+    getCart: async (_: any, __: any, { user }: any) => {
       if (!user) throw new Error("Unauthorized");
       let cart = await prisma.cart.findUnique({
         where: { userId: user.id },

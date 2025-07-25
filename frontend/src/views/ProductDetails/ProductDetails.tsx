@@ -15,7 +15,7 @@ function Page() {
   const { product, fetchProduct, likeproduct, productdetails }: any =
     useProductStore();
   // const { toggleWishlist, isInWishlist } = useWishlistStore();
-  // const { addToCart } = useCartStore();
+  const { addToCart } = useCartStore();
   useEffect(() => {
     const getProduct = async () => {
       if (!productId) return;

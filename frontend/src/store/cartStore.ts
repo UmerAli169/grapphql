@@ -7,7 +7,7 @@ import {
 } from "../services/internal";
 
 interface CartItem {
-  _id: string;
+  _id: string; 
   productId: string;
   name: string;
   price: number;
@@ -26,11 +26,11 @@ interface CartState {
 
 export const useCartStore = create<CartState>((set, get) => ({
   cart: [],
-
+  
   fetchCart: async () => {
     try {
       const cartData = await fetchCart();
-      set({ cart: cartData?.cart });
+      set({ cart: cartData.items || [] });
     } catch (error) {
       console.error("Error fetching cart:", error);
     }
@@ -39,7 +39,7 @@ export const useCartStore = create<CartState>((set, get) => ({
   addToCart: async (productId, quantity = 1) => {
     try {
       await addToCart(productId, quantity);
-      get().fetchCart(); // Refresh cart after adding
+      get().fetchCart(); 
     } catch (error) {
       console.error("Error adding to cart:", error);
     }
@@ -72,6 +72,8 @@ export const useCartStore = create<CartState>((set, get) => ({
   },
 
   removeFromCart: async (cartItemId) => {
+            console.log(cartItemId, 'previous quantity');
+
     try {
       await removeCartItem(cartItemId);
       get().fetchCart(); 

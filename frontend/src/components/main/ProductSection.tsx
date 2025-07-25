@@ -47,9 +47,9 @@ const ProductSection: React.FC<ProductSectionProps> = ({
                   >
                     <ProductCard
                       product={product as any}
-                      addToCart={() => addToCart(product._id)}
+                      addToCart={() => addToCart(product?.id)}
                       toggleWishlist={() => toggleWishlist(product)}
-                      isInWishlist={isInWishlist(product._id)}
+                      isInWishlist={isInWishlist(product.id)}
                     />
                   </div>
                 ))}

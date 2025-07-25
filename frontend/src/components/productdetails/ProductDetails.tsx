@@ -18,7 +18,8 @@ const ProductDetails = ({ productInfo }: ProductProps) => {
 
   // const { wishlist, fetchWishlist, toggleWishlist, isInWishlist }: any =
   //   useWishlistStore();
-  // const { addToCart, cart } = useCartStore();
+  const { addToCart, cart } = useCartStore();
+  
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isCartOpen, setIsCartOpen] = React.useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -37,7 +38,7 @@ const ProductDetails = ({ productInfo }: ProductProps) => {
 
   const handleAddToCart = async () => {
     try {
-      // await addToCart(product.id, 1);
+      await addToCart(product.id, 1);
       setIsCartOpen(true);
     } catch (error) {
       console.error("Error adding to cart:", error);
@@ -132,11 +133,11 @@ const ProductDetails = ({ productInfo }: ProductProps) => {
               onClick={() => toggleWishlist(product)}
             /> */}
           </div>
-          {/* <CartModal
+          <CartModal
             isOpen={isCartOpen}
             onClose={() => setIsCartOpen(false)}
             cartItems={cart}
-          /> */}
+          />
         </div>
       </div>
     </Wrapper>

@@ -36,6 +36,6 @@ export const cartTypeDefs = gql`
   }
 
   type Query {
-    getMyCart: Cart!
+    getCart: Cart!
   }
 `;

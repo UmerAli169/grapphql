@@ -16,7 +16,7 @@ exports.cartResolvers = void 0;
 const db_1 = __importDefault(require("../../lib/db"));
 exports.cartResolvers = {
     Query: {
-        getMyCart: (_1, __1, _a) => __awaiter(void 0, [_1, __1, _a], void 0, function* (_, __, { user }) {
+        getCart: (_1, __1, _a) => __awaiter(void 0, [_1, __1, _a], void 0, function* (_, __, { user }) {
             if (!user)
                 throw new Error("Unauthorized");
             let cart = yield db_1.default.cart.findUnique({

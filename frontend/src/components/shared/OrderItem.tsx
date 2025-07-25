@@ -26,24 +26,24 @@ const OrderItem: React.FC<OrderItemProps> = ({ item, isCartView = false }) => {
 
       <div className="flex-1">
         <p className="text-lg font-medium text-gray-800">{item.name}</p>
-        <p className="text-gray-500 text-sm">${item.price.toFixed(2)}</p>
+        <p className="text-gray-500 text-sm">${item.price}</p>
 
         {isCartView && (
           <div className="flex items-center mt-2">
             <div className="border rounded-md flex items-center">
-              <button className="px-3" onClick={() => decrementQuantity(item._id)}>-</button>
+              <button className="px-3" onClick={() => decrementQuantity(item.id)}>-</button>
               <span className="mx-3">{item.quantity}</span>
-              <button className="px-3" onClick={() => incrementQuantity(item._id)}>+</button>
+              <button className="px-3" onClick={() => incrementQuantity(item.id)}>+</button>
             </div>
           </div>
         )}
       </div>
 
       <div className="ml-auto flex items-center">
-        <p className="text-gray-600 text-sm">${(item.quantity * item.price).toFixed(2)}</p>
+        <p className="text-gray-600 text-sm">${(item.quantity * item.price)}</p>
 
         {isCartView && (
-          <button className="ml-4" onClick={() => removeFromCart(item._id)}>
+          <button className="ml-4" onClick={() => removeFromCart(item.id)}>
             <img src="/svgs/Shared/cross/cross.svg" alt="Remove" className="w-3" />
           </button>
         )}

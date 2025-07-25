@@ -38,6 +38,6 @@ exports.cartTypeDefs = (0, graphql_tag_1.gql) `
   }
 
   type Query {
-    getMyCart: Cart!
+    getCart: Cart!
   }
 `;
